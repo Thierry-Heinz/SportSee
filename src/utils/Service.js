@@ -47,9 +47,18 @@ export default class Api {
     return data.data.todayScore || data.data.score;
   }
 
-  getAverageSessions() {}
+  async getUserAverageSessions() {
+    const response = await this._fetchJSON("average-sessions");
+    const data = await response.json();
+    return data.data.sessions;
+  }
 
-  getUserActivity() {}
+  async getUserActivity() {
+    const response = await this._fetchJSON("activity");
+    const data = await response.json();
+    console.log(data);
+    return data.data.sessions;
+  }
 
   async getUserPerformance() {
     const response = await this._fetchJSON("performance");

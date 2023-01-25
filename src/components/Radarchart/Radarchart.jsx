@@ -8,8 +8,8 @@ import {
 } from "recharts";
 
 const StyledResponsiveContainer = styled(ResponsiveContainer)`
-  // height: 258px !important;
-  // width: 263px !important;
+  height: 258px !important;
+  width: 263px !important;
   flex: 1;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
@@ -38,7 +38,11 @@ const Radarchart = ({ lineColor, backgroundColor, areaColor, data }) => {
     >
       <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
         <PolarGrid stroke={lineColor} />
-        <PolarAngleAxis stroke={lineColor} fill={lineColor} dataKey="subject" />
+        <PolarAngleAxis
+          stroke={lineColor}
+          fill={lineColor}
+          dataKey="category"
+        />
         <Radar
           name="performance"
           dataKey="value"

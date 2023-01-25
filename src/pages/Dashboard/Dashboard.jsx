@@ -59,6 +59,8 @@ export default function Dashboard() {
     keyDatas: [],
     userPerformances: [],
     userScore: 0,
+    userAverageSessions: [],
+    userActivity: [],
   });
 
   const fetchData = async () => {
@@ -67,12 +69,16 @@ export default function Dashboard() {
     const keyDatas = await userData.keyDatas;
     const userPerformances = await userData.userPerformance;
     const userScore = await userData.userScore;
+    const userAverageSessions = await userData.userAverageSessions;
+    const userActivity = await userData.userActivity;
 
     return {
       firstName: firstName,
       keyDatas: keyDatas,
       userPerformances: userPerformances,
       userScore: userScore,
+      userAverageSessions: userAverageSessions,
+      userActivity: userActivity,
     };
   };
 
@@ -93,15 +99,15 @@ export default function Dashboard() {
         />
         <Section>
           <Charts>
-            {/* <Barchart /> */}
-            <Linechart />
+            <Barchart data={userData.userActivity} />
+            <Linechart data={userData.userAverageSessions} />
             <Radarchart
               lineColor={colors.white}
               backgroundColor={colors.darkgrey}
               areaColor={colors.primary}
               data={userData.userPerformances}
             />
-            <Radialbarchart data={userData.userScore} />
+            {/* <Radialbarchart data={userData.userScore} /> */}
           </Charts>
           <Keyinfos>
             {userData.keyDatas.map((infoCard, i) => (

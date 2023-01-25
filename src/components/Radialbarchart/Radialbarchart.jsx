@@ -47,7 +47,7 @@ const Radialbarchart = ({ data }) => {
   return (
     <StyledResponsiveContainer width="100%" height="100%">
       <h1>Score: {data} % </h1>
-      <svg viewbox="0 0 100% 100%" preserveAspectRatio="none">
+      <svg viewBox="0 0 100% 100%" preserveAspectRatio="none">
         <circle r="100" cx={258 / 2} cy={263 / 2} fill="white" />
         <path
           id="arc1"

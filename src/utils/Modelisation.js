@@ -20,6 +20,8 @@ class UserData {
     this.keyDatas = this.setKeyData();
     this.userPerformance = this.setUserPerformance();
     this.userScore = this.setUserScore();
+    this.userAverageSessions = this.setUserAverageSessions();
+    this.userActivity = this.setUserActivity();
   }
 
   async setFirstname() {
@@ -87,7 +89,7 @@ class UserData {
     const userPerformances = [];
     data.forEach((singleData) => {
       const data = {
-        subject: subjects[singleData.kind - 1],
+        category: subjects[singleData.kind - 1],
         value: singleData.value,
         fullMark: 220,
       };
@@ -99,6 +101,38 @@ class UserData {
   async setUserScore() {
     const dataObject = await this.ApiCall.getUserScore();
     return dataObject * 100;
+  }
+
+  async setUserAverageSessions() {
+    const dataObject = await this.ApiCall.getUserAverageSessions();
+
+    const day = ["L", "M", "M", "J", "V", "S", "D"];
+    const userAverageSessions = [];
+    dataObject.forEach((singleData) => {
+      const data = {
+        day: day[singleData.day - 1],
+        min: singleData.sessionLength,
+      };
+      userAverageSessions.push(data);
+    });
+
+    return userAverageSessions;
+  }
+
+  async setUserActivity() {
+    const dataObject = await this.ApiCall.getUserActivity();
+    console.log(dataObject);
+    const userActivity = [];
+
+    dataObject.forEach((singleData) => {
+      const data = {
+        day: singleData.day.charAt(singleData.day.length - 1),
+        kilogram: singleData.kilogram,
+        calories: singleData.calories,
+      };
+      userActivity.push(data);
+    });
+    return userActivity;
   }
 }
 
