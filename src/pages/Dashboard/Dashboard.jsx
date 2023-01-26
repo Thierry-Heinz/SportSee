@@ -1,8 +1,9 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+
 import UserData from "../../utils/Modelisation";
 import colors from "../../utils/colors";
+import { StyledDashboard, Main, Section, Charts, Keyinfos } from "./Style";
 
 // import Layout
 import Navbar from "../../components/Navbar";
@@ -16,37 +17,6 @@ import Linechart from "../../components/Linechart";
 import Radarchart from "../../components/Radarchart";
 import Radialbarchart from "../../components/Radialbarchart";
 
-const StyledDashboard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Main = styled.main`
-  flex: 1;
-  height: 100%;
-  padding: 5%;
-  box-sizing: border-box;
-`;
-
-const Section = styled.section`
-  display: flex;
-  gap: 31px;
-`;
-
-const Charts = styled.div`
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: 30px;
-`;
-
-const Keyinfos = styled.div`
-  flex: 0 0 258px;
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-`;
-
 /**
  * @params {number} userID from Url params (react-router)
  * @returns {HTMLElement} the Dashboard page made of several components
@@ -58,9 +28,9 @@ export default function Dashboard() {
     firstName: "",
     keyDatas: [],
     userPerformances: [],
-    userScore: 0,
     userAverageSessions: [],
     userActivity: [],
+    userScore: [{ value: 0 }],
   });
 
   const fetchData = async () => {
@@ -99,15 +69,27 @@ export default function Dashboard() {
         />
         <Section>
           <Charts>
-            <Barchart data={userData.userActivity} />
+            <Barchart
+              data={userData.userActivity}
+              colors={{
+                dataKey1Color: colors.darkgrey,
+                dataKey2Color: colors.primary,
+                titleColor: colors.darkgrey2,
+                textColor: colors.mediumgrey,
+                backgroundColor: colors.lightgrey,
+              }}
+            />
             <Linechart data={userData.userAverageSessions} />
             <Radarchart
-              lineColor={colors.white}
-              backgroundColor={colors.darkgrey}
-              areaColor={colors.primary}
+              colors={{
+                textColor: colors.white,
+                lineColor: colors.white,
+                styleBackgroundColor: colors.darkgrey,
+                areaColor: colors.primary,
+              }}
               data={userData.userPerformances}
             />
-            {/* <Radialbarchart data={userData.userScore} /> */}
+            <Radialbarchart data={userData.userScore} />
           </Charts>
           <Keyinfos>
             {userData.keyDatas.map((infoCard, i) => (

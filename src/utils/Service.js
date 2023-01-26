@@ -44,6 +44,7 @@ export default class Api {
 
   async getUserScore() {
     const data = await this.getUserData();
+    console.log(data);
     return data.data.todayScore || data.data.score;
   }
 
@@ -56,7 +57,6 @@ export default class Api {
   async getUserActivity() {
     const response = await this._fetchJSON("activity");
     const data = await response.json();
-    console.log(data);
     return data.data.sessions;
   }
 

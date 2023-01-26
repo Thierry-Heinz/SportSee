@@ -100,7 +100,16 @@ class UserData {
 
   async setUserScore() {
     const dataObject = await this.ApiCall.getUserScore();
-    return dataObject * 100;
+    console.log(dataObject);
+    const userScore = [
+      {
+        name: "score",
+        value: dataObject * 100,
+        fill: colors.primary,
+        max: 100,
+      },
+    ];
+    return userScore;
   }
 
   async setUserAverageSessions() {
@@ -121,7 +130,6 @@ class UserData {
 
   async setUserActivity() {
     const dataObject = await this.ApiCall.getUserActivity();
-    console.log(dataObject);
     const userActivity = [];
 
     dataObject.forEach((singleData) => {

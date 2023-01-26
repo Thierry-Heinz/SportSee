@@ -15,16 +15,20 @@ import {
 const StyledResponsiveContainer = styled(ResponsiveContainer)`
   width: 100% !important;
   height: 500px !important;
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 /**
  *
  * @returns {HTMLElement}
  */
-export default function Barchart({ data }) {
-  console.log(data);
+export default function Barchart({ data, colors }) {
   return (
-    <StyledResponsiveContainer width="100%" height="100%">
+    <StyledResponsiveContainer
+      width="100%"
+      height="100%"
+      backgroundColor={colors.backgroundColor}
+    >
       <BarChart
         width={500}
         height={300}
@@ -37,7 +41,7 @@ export default function Barchart({ data }) {
         }}
         barGap={"5%"}
         barCategoryGap={"20%"}
-        barSize={7}
+        barSize={8}
       >
         <CartesianGrid strokeDasharray="2" vertical={false} />
         <Tooltip />
@@ -45,7 +49,7 @@ export default function Barchart({ data }) {
         <XAxis
           dataKey="day"
           tickLine={false}
-          padding={{ left: -45, right: -45 }}
+          // padding={{ left: -45, right: -45 }}
         />
         <YAxis
           yAxisId={"right"}
@@ -70,7 +74,7 @@ export default function Barchart({ data }) {
           dataKey="kilogram"
           name="Kilogrammes (kg)"
           legendType="circle"
-          fill="#8884d8"
+          fill={colors.dataKey1Color}
           background={{ fill: "#eee" }}
           radius={[3.5, 3.5, 0, 0]}
         />
@@ -80,7 +84,7 @@ export default function Barchart({ data }) {
           dataKey="calories"
           legendType="circle"
           name="Calories brûlées (kCal)"
-          fill="#82ca9d"
+          fill={colors.dataKey2Color}
         />
       </BarChart>
     </StyledResponsiveContainer>
