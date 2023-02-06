@@ -4,6 +4,8 @@ import colors from "../../utils/colors";
 
 export const WrapperContainer = styled.div`
   position: relative;
+  width: 100%;
+  height: 500px;
 `;
 
 export const Title = styled.h3`
@@ -18,8 +20,6 @@ export const Title = styled.h3`
 `;
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
-  width: 1200px !important;
-  height: 500px !important;
   border-radius: 5px;
   background-color: ${(props) => props.backgroundColor};
   .recharts-default-legend {

@@ -35,7 +35,7 @@ export default function Barchart({ data, colors }) {
 
       <StyledResponsiveContainer backgroundColor={colors.backgroundColor}>
         <BarChart
-          width={1200}
+          width="100%"
           height={500}
           data={data}
           margin={{

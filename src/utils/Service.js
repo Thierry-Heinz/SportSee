@@ -1,3 +1,5 @@
+import Modelisation from "./Modelisation";
+
 /**
  * @param {number} userId
  * @param {url} from .env REACT_APP_BASE_URL
@@ -7,6 +9,14 @@ export default class Api {
   constructor(userId) {
     this._userId = userId;
     this._baseURL = process.env.REACT_APP_BASE_URL;
+    this.Modelisation = new Modelisation();
+    this.userData = this.getUserData();
+    this.firstName = this.getFirstName();
+    this.keyDatas = this.getKeyDatas();
+    this.userScore = this.getUserScore();
+    this.userPerformance = this.getUserPerformance();
+    this.userAverageSessions = this.getUserAverageSessions();
+    this.userActivity = this.getUserActivity();
   }
 
   /**
@@ -29,40 +39,46 @@ export default class Api {
   async getUserData() {
     const response = await this._fetchJSON();
     const data = await response.json();
-    return data;
+
+    const userData = {
+      firstName: data.data.userInfos.firstName,
+      keyDatas: this.Modelisation.adaptKeyData(data.data.keyData),
+      userScore: this.Modelisation.adaptUserScore(
+        data.data.todayScore || data.data.score
+      ),
+    };
+    return userData;
   }
 
-  async getUserFirstName() {
-    const data = await this.getUserData();
-    return data.data.userInfos.firstName;
+  async getFirstName() {
+    const userData = await this.userData;
+    return userData.firstName;
   }
-
-  async getKeyData() {
-    const data = await this.getUserData();
-    return data.data.keyData;
+  async getKeyDatas() {
+    const userData = await this.userData;
+    return userData.keyDatas;
   }
-
   async getUserScore() {
-    const data = await this.getUserData();
-    console.log(data);
-    return data.data.todayScore || data.data.score;
+    const userData = await this.userData;
+    return userData.userScore;
   }
 
   async getUserAverageSessions() {
     const response = await this._fetchJSON("average-sessions");
     const data = await response.json();
-    return data.data.sessions;
+    return this.Modelisation.adaptUserAverageSessions(data.data.sessions);
   }
 
   async getUserActivity() {
     const response = await this._fetchJSON("activity");
     const data = await response.json();
-    return data.data.sessions;
+
+    return this.Modelisation.adaptUserActivity(data.data.sessions);
   }
 
   async getUserPerformance() {
     const response = await this._fetchJSON("performance");
     const data = await response.json();
-    return data;
+    return this.Modelisation.adaptUserPerformance(data);
   }
 }

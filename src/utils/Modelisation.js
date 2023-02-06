@@ -1,4 +1,3 @@
-import Api from "./Service";
 import colors from "./colors";
 
 //Importing svg icon
@@ -12,25 +11,8 @@ import cheeseburger from "../assets/cheeseburger.svg";
  * @returns {class} UserData object
  */
 
-class UserData {
-  constructor(id) {
-    this.id = id;
-    this.ApiCall = new Api(this.id);
-    this.firstName = this.setFirstname();
-    this.keyDatas = this.setKeyData();
-    this.userPerformance = this.setUserPerformance();
-    this.userScore = this.setUserScore();
-    this.userAverageSessions = this.setUserAverageSessions();
-    this.userActivity = this.setUserActivity();
-  }
-
-  async setFirstname() {
-    const firstName = await this.ApiCall.getUserFirstName();
-    return firstName;
-  }
-
-  async setKeyData() {
-    const dataObject = await this.ApiCall.getKeyData();
+class Modelisation {
+  adaptKeyData(dataObject) {
     const keyDatas = [];
     for (const data in dataObject) {
       const keyInfo = {};
@@ -71,8 +53,7 @@ class UserData {
     return keyDatas;
   }
 
-  async setUserPerformance() {
-    const dataObject = await this.ApiCall.getUserPerformance();
+  adaptUserPerformance(dataObject) {
     const {
       data: { data },
     } = dataObject;
@@ -98,9 +79,7 @@ class UserData {
     return userPerformances.reverse();
   }
 
-  async setUserScore() {
-    const dataObject = await this.ApiCall.getUserScore();
-    console.log(dataObject);
+  adaptUserScore(dataObject) {
     const userScore = [
       {
         name: "score",
@@ -112,9 +91,7 @@ class UserData {
     return userScore;
   }
 
-  async setUserAverageSessions() {
-    const dataObject = await this.ApiCall.getUserAverageSessions();
-
+  adaptUserAverageSessions(dataObject) {
     const day = ["L", "M", "M", "J", "V", "S", "D"];
     const userAverageSessions = [];
     dataObject.forEach((singleData) => {
@@ -128,8 +105,7 @@ class UserData {
     return userAverageSessions;
   }
 
-  async setUserActivity() {
-    const dataObject = await this.ApiCall.getUserActivity();
+  adaptUserActivity(dataObject) {
     const userActivity = [];
 
     dataObject.forEach((singleData) => {
@@ -144,4 +120,4 @@ class UserData {
   }
 }
 
-export default UserData;
+export default Modelisation;

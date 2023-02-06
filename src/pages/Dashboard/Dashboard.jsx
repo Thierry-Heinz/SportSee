@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import UserData from "../../utils/Modelisation";
+import ApiCall from "../../utils/Service";
 import colors from "../../utils/colors";
 import { StyledDashboard, Main, Section, Charts, Keyinfos } from "./Style";
 
@@ -34,11 +34,11 @@ export default function Dashboard() {
   });
 
   const fetchData = async () => {
-    const userData = new UserData(userId);
+    const userData = new ApiCall(userId);
     const firstName = await userData.firstName;
     const keyDatas = await userData.keyDatas;
-    const userPerformances = await userData.userPerformance;
     const userScore = await userData.userScore;
+    const userPerformances = await userData.userPerformance;
     const userAverageSessions = await userData.userAverageSessions;
     const userActivity = await userData.userActivity;
 
@@ -54,6 +54,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchData().then((res) => {
+      console.log(res);
       setUserData(res);
     });
   }, []);
@@ -79,7 +80,14 @@ export default function Dashboard() {
                 backgroundColor: colors.lightgrey,
               }}
             />
-            <Linechart data={userData.userAverageSessions} />
+            <Linechart
+              data={userData.userAverageSessions}
+              colors={{
+                tooltipColor: colors.black,
+                lineColor: colors.white,
+                backgroundColor: colors.primary,
+              }}
+            />
             <Radarchart
               colors={{
                 textColor: colors.white,
