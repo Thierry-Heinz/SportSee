@@ -27,12 +27,12 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
     justify-content: flex-end;
     gap: 32px;
 
-    .recharts-legend-item-text{
-        font-family: 'Roboto', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        color: ${colors.mediumgrey} !important;
-        margin-left: 12px;
+    .recharts-legend-item-text {
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: ${colors.mediumgrey} !important;
+      margin-left: 12px;
     }
   }
   .recharts-cartesian-grid-horizontal {
@@ -47,17 +47,16 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
   .custom-tooltip {
     background-color: ${colors.primary};
     border: none;
-    padding:5px 10px;
-    display:flex;
+    padding: 5px 10px;
+    display: flex;
     flex-direction: column;
     gap: 7px;
 
     p.label {
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       font-weight: 500;
-        color: ${colors.white};
-        font-size: 12px;
-      }
+      color: ${colors.white};
+      font-size: 12px;
     }
   }
 `;
