@@ -7,10 +7,20 @@ const colors = {
   mediumgrey2: "#9B9EAC",
   lightgrey: "#FBFBFB",
   white: "#FFFFFF",
-  white: "#000000",
+  black: "#000000",
   blue: "#4AB8FF",
   yellow: "#F9CE23",
   pink: "#FD5181",
 };
 
 export default colors;
+
+export const hexToRgb = (hex) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const color = {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16),
+  };
+  return `${color.r},${color.g},${color.b}`;
+};

@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 import { Header } from "./style";
 import Logo from "../../assets/logo.svg";
-export default function Navbar() {
+export default function Navbar({ navBarHeight }) {
   return (
-    <Header>
-      <img src={Logo} alt="SportSee logo" />
+    <Header navBarHeight={navBarHeight}>
+      <Link to="/">
+        <img src={Logo} alt="SportSee logo" />
+      </Link>
       <ul>
         <li>
           <a href="#">Accueil</a>

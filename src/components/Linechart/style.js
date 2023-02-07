@@ -3,13 +3,6 @@ import styled from "styled-components";
 
 import colors from "../../utils/colors";
 
-export const WrapperContainer = styled.div`
-  position: relative;
-  // width: 100%;
-  height: min-content;
-  overflow: hidden;
-`;
-
 export const WeBckg = styled.div`
   position: absolute;
   top: 0;
@@ -33,8 +26,6 @@ export const Title = styled.h3`
 `;
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
-  height: 258px !important;
-  width: 263px !important;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
 

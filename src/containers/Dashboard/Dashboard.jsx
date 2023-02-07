@@ -8,7 +8,8 @@ import {
   UserDashboard,
   Main,
   Section,
-  Charts,
+  ChartsWrapper,
+  ChartsRow,
   Keyinfos,
 } from "./style";
 
@@ -61,26 +62,36 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchData().then((res) => {
-      console.log(res);
       setUserData(res);
     });
   }, []);
 
+  const navBarHeight = 91;
+  const sideBarWidth = 117;
+
+  console.log(userData.userPerformances);
+
   return (
     <StyledDashboardWrapper>
-      <Navbar />
-      <Main>
-        <Sidebar />
+      <Navbar navBarHeight={navBarHeight} />
+      <Main navBarHeight={navBarHeight}>
+        <Sidebar sideBarWidth={sideBarWidth} />
 
-        <UserDashboard>
+        <UserDashboard sideBarWidth={sideBarWidth}>
           <Userheader
             title={userData.firstName}
             titleColor={colors.primary}
             subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
           />
           <Section>
-            <Charts>
+            <ChartsWrapper>
               <Barchart
+                sizes={{
+                  minWidth: 839,
+                  minHeight: 320,
+                  maxWidth: 1400,
+                  maxHeight: 500,
+                }}
                 data={userData.userActivity}
                 colors={{
                   dataKey1Color: colors.darkgrey,
@@ -90,25 +101,47 @@ export default function Dashboard() {
                   backgroundColor: colors.lightgrey,
                 }}
               />
-              <Linechart
-                data={userData.userAverageSessions}
-                colors={{
-                  tooltipColor: colors.black,
-                  lineColor: colors.white,
-                  backgroundColor: colors.primary,
-                }}
-              />
-              <Radarchart
-                colors={{
-                  textColor: colors.white,
-                  lineColor: colors.white,
-                  styleBackgroundColor: colors.darkgrey,
-                  areaColor: colors.primary,
-                }}
-                data={userData.userPerformances}
-              />
-              <Radialbarchart data={userData.userScore} />
-            </Charts>
+              <ChartsRow>
+                <Linechart
+                  sizes={{
+                    minWidth: 258,
+                    minHeight: 263,
+                    maxWidth: 1400,
+                    maxHeight: 500,
+                  }}
+                  data={userData.userAverageSessions}
+                  colors={{
+                    tooltipColor: colors.black,
+                    lineColor: colors.white,
+                    backgroundColor: colors.primary,
+                  }}
+                />
+                <Radarchart
+                  sizes={{
+                    minWidth: 258,
+                    minHeight: 263,
+                    maxWidth: 1400,
+                    maxHeight: 500,
+                  }}
+                  colors={{
+                    textColor: colors.white,
+                    lineColor: colors.white,
+                    styleBackgroundColor: colors.darkgrey,
+                    areaColor: colors.primary,
+                  }}
+                  data={userData.userPerformances}
+                />
+                <Radialbarchart
+                  data={userData.userScore}
+                  sizes={{
+                    minWidth: 258,
+                    minHeight: 263,
+                    maxWidth: 1400,
+                    maxHeight: 500,
+                  }}
+                />
+              </ChartsRow>
+            </ChartsWrapper>
             <Keyinfos>
               {userData.keyDatas.map((infoCard, i) => (
                 <Keyinfocard

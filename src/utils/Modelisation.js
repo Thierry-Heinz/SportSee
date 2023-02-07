@@ -69,9 +69,11 @@ class Modelisation {
 
     const userPerformances = [];
     data.forEach((singleData) => {
+      console.log(singleData);
       const data = {
-        category: subjects[singleData.kind - 1],
-        value: singleData.value,
+        subject: subjects[singleData.kind - 1],
+        A: parseInt(singleData.value),
+        B: 220,
         fullMark: 220,
       };
       userPerformances.push(data);

@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
-  height: 258px !important;
-  width: 263px !important;
-  // flex: 1;
   background-color: ${(props) => props.styleBackgroundColor};
   border-radius: 5px;
   & .recharts-polar-grid-angle {

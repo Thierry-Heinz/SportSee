@@ -2,14 +2,6 @@ import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
 
-export const WrapperContainer = styled.div`
-  position: relative;
-  height: 283px !important;
-  width: 288px !important;
-
-  background-color: #fbfbfb;
-`;
-
 export const Title = styled.h3`
   z-index: 300;
   position: absolute;
@@ -69,8 +61,8 @@ export const WhiteCircle = styled.div`
   z-index: 100;
   position: absolute;
   border-radius: 100%;
-  width: 66%;
-  height: 66%;
+  width: 64%;
+  height: 64%;
   top: 50%;
   left: 50%;
   background-color: ${colors.white};

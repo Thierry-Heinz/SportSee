@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
-import { WrapperContainer, Title, StyledResponsiveContainer } from "./style";
+import ChartWrapperContainer from "../ChartWrapperContainer";
+
+import { Title, StyledResponsiveContainer } from "./style";
 
 import {
   BarChart,
@@ -28,15 +30,15 @@ const CustomTooltip = ({ active, payload }) => {
  *
  * @returns {HTMLElement}
  */
-export default function Barchart({ data, colors }) {
+export default function Barchart({ sizes, data, colors }) {
   return (
-    <WrapperContainer>
+    <ChartWrapperContainer sizes={sizes}>
       <Title>Activité quotidienne</Title>
 
       <StyledResponsiveContainer backgroundColor={colors.backgroundColor}>
         <BarChart
           width="100%"
-          height={500}
+          height="100%"
           data={data}
           margin={{
             top: 20,
@@ -108,7 +110,7 @@ export default function Barchart({ data, colors }) {
           />
         </BarChart>
       </StyledResponsiveContainer>
-    </WrapperContainer>
+    </ChartWrapperContainer>
   );
 }
 

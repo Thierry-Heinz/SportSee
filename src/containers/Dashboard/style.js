@@ -8,7 +8,7 @@ export const StyledDashboardWrapper = styled.div`
 
 export const Main = styled.main`
   flex: 1;
-  height: 100%;
+  height: calc(100% - ${(props) => props.navBarHeight}px);
 
   box-sizing: border-box;
   display: flex;
@@ -25,10 +25,16 @@ export const Section = styled.section`
   gap: 31px;
 `;
 
-export const Charts = styled.div`
+export const ChartsWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
   flex-wrap: wrap;
+  gap: 30px;
+`;
+
+export const ChartsRow = styled.div`
+  display: flex;
   gap: 30px;
 `;
 

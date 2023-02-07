@@ -2,12 +2,6 @@ import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
 
-export const WrapperContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 500px;
-`;
-
 export const Title = styled.h3`
   position: absolute;
   font-family: "Roboto", sans-serif;

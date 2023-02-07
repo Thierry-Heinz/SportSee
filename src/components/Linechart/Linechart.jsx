@@ -1,3 +1,5 @@
+import ChartWrapperContainer from "../ChartWrapperContainer";
+
 import {
   WrapperContainer,
   StyledResponsiveContainer,
@@ -18,9 +20,9 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const Linechart = ({ data, colors }) => {
+const Linechart = ({ sizes, data, colors }) => {
   return (
-    <WrapperContainer>
+    <ChartWrapperContainer sizes={sizes}>
       <Title>Durée moyenne des sessions</Title>
       <WeBckg />
       <StyledResponsiveContainer
@@ -29,8 +31,8 @@ const Linechart = ({ data, colors }) => {
         height="100%"
       >
         <LineChart
-          width={500}
-          height={300}
+          width="100%"
+          height="100%"
           data={data}
           margin={{
             top: 20,
@@ -57,7 +59,7 @@ const Linechart = ({ data, colors }) => {
           />
         </LineChart>
       </StyledResponsiveContainer>
-    </WrapperContainer>
+    </ChartWrapperContainer>
   );
 };
 

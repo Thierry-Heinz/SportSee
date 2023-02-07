@@ -1,5 +1,6 @@
+import ChartWrapperContainer from "../ChartWrapperContainer";
+
 import {
-  WrapperContainer,
   StyledResponsiveContainer,
   Title,
   RenderLegendStyled,
@@ -7,11 +8,17 @@ import {
 } from "./style";
 import { getScaledValue } from "./utils";
 import { RadialBarChart, RadialBar } from "recharts";
+import styled from "styled-components";
+import colors from "../../utils/colors";
 
-const Radialbarchart = ({ data }) => {
+const ChartWrapperContainerWBckg = styled(ChartWrapperContainer)`
+  background-color: ${colors.lightgrey};
+`;
+
+const Radialbarchart = ({ sizes, data }) => {
   let scaledValue = getScaledValue(data[0].value, 0, 100, 200, -200);
   return (
-    <WrapperContainer>
+    <ChartWrapperContainerWBckg sizes={sizes}>
       <Title>Score</Title>
       <RenderLegendStyled value={data[0].value} />
       <StyledResponsiveContainer width="100%" height="100%">
@@ -25,11 +32,11 @@ const Radialbarchart = ({ data }) => {
           barSize={10}
           data={data}
         >
-          <RadialBar clockWise={true} dataKey="value" />
+          <RadialBar clockWise={true} dataKey="value" cornerRadius={5} />
         </RadialBarChart>
       </StyledResponsiveContainer>
       <WhiteCircle />
-    </WrapperContainer>
+    </ChartWrapperContainerWBckg>
   );
 };
 

@@ -3,7 +3,7 @@ import colors from "../../utils/colors";
 
 export const Header = styled.header`
   flex: 0 0 100%;
-  height: 91px;
+  height: ${(props) => props.navBarHeight}px;
   background-color: ${colors.secondary};
   display: flex;
   padding: 28px 89px 28px 18px;
@@ -11,6 +11,8 @@ export const Header = styled.header`
   justify-content: space-between;
   gap: 149px;
   align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   img {
     width: 178px;
     height: 61px;

@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Components
-import Welcome from "../../pages/Welcome";
-import Dashboard from "../../pages/Dashboard";
+import Welcome from "../../containers/Welcome";
+import Dashboard from "../../containers/Dashboard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Welcome /> },
