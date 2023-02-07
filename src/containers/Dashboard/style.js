@@ -1,15 +1,23 @@
 import styled from "styled-components";
 
-export const StyledDashboard = styled.div`
+export const StyledDashboardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
 `;
 
 export const Main = styled.main`
   flex: 1;
   height: 100%;
-  padding: 5%;
+
   box-sizing: border-box;
+  display: flex;
+`;
+
+export const UserDashboard = styled.div`
+  padding: 68px 107px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Section = styled.section`

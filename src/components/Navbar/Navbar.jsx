@@ -1,10 +1,23 @@
-import styled from "styled-components";
-
-const Header = styled.header`
-  flex: 0 0 100%;
-  height: 91px;
-`;
-
+import { Header } from "./style";
+import Logo from "../../assets/logo.svg";
 export default function Navbar() {
-  return <Header>I'm the navbar</Header>;
+  return (
+    <Header>
+      <img src={Logo} alt="SportSee logo" />
+      <ul>
+        <li>
+          <a href="#">Accueil</a>
+        </li>
+        <li>
+          <a href="#">Profil</a>
+        </li>
+        <li>
+          <a href="#">Réglage</a>
+        </li>
+        <li>
+          <a href="#">Communauté</a>
+        </li>
+      </ul>
+    </Header>
+  );
 }

@@ -1,9 +1,4 @@
-import styled from "styled-components";
-
-const Aside = styled.aside`
-  flex: 0 0 117px;
-`;
-
+import { Aside } from "./style.js";
 export default function Sidebar() {
   return <Aside>i'm the sidebar</Aside>;
 }

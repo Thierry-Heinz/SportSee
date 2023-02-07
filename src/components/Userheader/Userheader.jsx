@@ -1,8 +1,12 @@
-export default function UserHeader({ title, subTitle }) {
+import { Header, Title, SubTitle } from "./style.js";
+
+export default function UserHeader({ title, titleColor, subTitle }) {
   return (
-    <>
-      <h1>{title}</h1>
-      <h2>{subTitle}</h2>
-    </>
+    <Header>
+      <Title firstNameColor={titleColor}>
+        Bonjour <span>{title}</span>
+      </Title>
+      <SubTitle>{subTitle}</SubTitle>
+    </Header>
   );
 }

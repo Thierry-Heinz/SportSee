@@ -3,7 +3,14 @@ import { useParams } from "react-router";
 
 import ApiCall from "../../utils/Service";
 import colors from "../../utils/colors";
-import { StyledDashboard, Main, Section, Charts, Keyinfos } from "./Style";
+import {
+  StyledDashboardWrapper,
+  UserDashboard,
+  Main,
+  Section,
+  Charts,
+  Keyinfos,
+} from "./style";
 
 // import Layout
 import Navbar from "../../components/Navbar";
@@ -60,52 +67,59 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <StyledDashboard>
+    <StyledDashboardWrapper>
       <Navbar />
-      <Sidebar />
       <Main>
-        <Userheader
-          title={`Bonjour ${userData.firstName}`}
-          subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
-        />
-        <Section>
-          <Charts>
-            <Barchart
-              data={userData.userActivity}
-              colors={{
-                dataKey1Color: colors.darkgrey,
-                dataKey2Color: colors.primary,
-                titleColor: colors.darkgrey2,
-                textColor: colors.mediumgrey,
-                backgroundColor: colors.lightgrey,
-              }}
-            />
-            <Linechart
-              data={userData.userAverageSessions}
-              colors={{
-                tooltipColor: colors.black,
-                lineColor: colors.white,
-                backgroundColor: colors.primary,
-              }}
-            />
-            <Radarchart
-              colors={{
-                textColor: colors.white,
-                lineColor: colors.white,
-                styleBackgroundColor: colors.darkgrey,
-                areaColor: colors.primary,
-              }}
-              data={userData.userPerformances}
-            />
-            <Radialbarchart data={userData.userScore} />
-          </Charts>
-          <Keyinfos>
-            {userData.keyDatas.map((infoCard, i) => (
-              <Keyinfocard key={`${i}-${infoCard.name}`} infoCard={infoCard} />
-            ))}
-          </Keyinfos>
-        </Section>
+        <Sidebar />
+
+        <UserDashboard>
+          <Userheader
+            title={userData.firstName}
+            titleColor={colors.primary}
+            subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
+          />
+          <Section>
+            <Charts>
+              <Barchart
+                data={userData.userActivity}
+                colors={{
+                  dataKey1Color: colors.darkgrey,
+                  dataKey2Color: colors.primary,
+                  titleColor: colors.darkgrey2,
+                  textColor: colors.mediumgrey,
+                  backgroundColor: colors.lightgrey,
+                }}
+              />
+              <Linechart
+                data={userData.userAverageSessions}
+                colors={{
+                  tooltipColor: colors.black,
+                  lineColor: colors.white,
+                  backgroundColor: colors.primary,
+                }}
+              />
+              <Radarchart
+                colors={{
+                  textColor: colors.white,
+                  lineColor: colors.white,
+                  styleBackgroundColor: colors.darkgrey,
+                  areaColor: colors.primary,
+                }}
+                data={userData.userPerformances}
+              />
+              <Radialbarchart data={userData.userScore} />
+            </Charts>
+            <Keyinfos>
+              {userData.keyDatas.map((infoCard, i) => (
+                <Keyinfocard
+                  key={`${i}-${infoCard.name}`}
+                  infoCard={infoCard}
+                />
+              ))}
+            </Keyinfos>
+          </Section>
+        </UserDashboard>
       </Main>
-    </StyledDashboard>
+    </StyledDashboardWrapper>
   );
 }

@@ -7,6 +7,7 @@ const colors = {
   mediumgrey2: "#9B9EAC",
   lightgrey: "#FBFBFB",
   white: "#FFFFFF",
+  white: "#000000",
   blue: "#4AB8FF",
   yellow: "#F9CE23",
   pink: "#FD5181",
