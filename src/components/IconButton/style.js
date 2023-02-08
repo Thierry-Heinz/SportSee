@@ -6,6 +6,7 @@ export const Button = styled.button`
   width: 64px;
   height: 64px;
   background-color: ${colors.lightgrey};
+  border: none;
   &:hover {
     cursor: pointer;
   }

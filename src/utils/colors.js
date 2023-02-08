@@ -15,6 +15,11 @@ const colors = {
 
 export default colors;
 
+/**
+ * Transform an hexadecimal color into a rgb one
+ * @param {string} hex color
+ * @return {string} r,g,b
+ */
 export const hexToRgb = (hex) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   const color = {

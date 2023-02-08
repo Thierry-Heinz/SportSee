@@ -1,11 +1,16 @@
 import Modelisation from "./Modelisation";
 
 /**
- * @param {number} userId
- * @param {url} from .env REACT_APP_BASE_URL
+ *
+ * Api: a class that fetch the data and adapt it (by using the Modelisation Class) fro later use
+ *
  */
 
 export default class Api {
+  /**
+   * @param {number} userId
+   * @param {url} from Api url .env REACT_APP_BASE_URL
+   */
   constructor(userId) {
     this._userId = userId;
     this._baseURL = process.env.REACT_APP_BASE_URL;
@@ -20,12 +25,12 @@ export default class Api {
   }
 
   /**
+   * Private method fetching the data
    *
    * @param {string} endpoint
-   * @returns {object} a data object containing use data
+   * @returns {promise} a Promise containing that will contain the data object
    *
    */
-
   _fetchJSON(endpoint) {
     let baseUrlRequest = `${this._baseURL}/${this._userId}`;
     let urlRequest = endpoint
@@ -36,6 +41,10 @@ export default class Api {
     return apiResponse;
   }
 
+  /**
+   * An Async func. that retrieve the primary User data
+   * @return {object} userData
+   */
   async getUserData() {
     const response = await this._fetchJSON();
     const data = await response.json();
@@ -50,25 +59,47 @@ export default class Api {
     return userData;
   }
 
+  /**
+   * An Async func. that retrieve the firstname of the User
+   * @return {string} userData
+   */
   async getFirstName() {
     const userData = await this.userData;
     return userData.firstName;
   }
+
+  /**
+   * An Async func. that retrieve the key datas (for InfoCard) of the User
+   * @return {array} keyDatas
+   */
   async getKeyDatas() {
     const userData = await this.userData;
     return userData.keyDatas;
   }
+
+  /**
+   * An Async func. that retrieve the score (for Radialbarchart) of the User
+   * @return {array} userScore
+   */
   async getUserScore() {
     const userData = await this.userData;
     return userData.userScore;
   }
 
+  /**
+   * An Async func. that retrieve the  average sessions (for Linechart) of the User
+   * @return {array} average sessions
+   */
   async getUserAverageSessions() {
     const response = await this._fetchJSON("average-sessions");
     const data = await response.json();
     return this.Modelisation.adaptUserAverageSessions(data.data.sessions);
   }
 
+  /**
+   * An Async func. that retrieve the activity (for Barchart) of the User
+   * @return {array} user activity
+   */
   async getUserActivity() {
     const response = await this._fetchJSON("activity");
     const data = await response.json();
@@ -76,9 +107,13 @@ export default class Api {
     return this.Modelisation.adaptUserActivity(data.data.sessions);
   }
 
+  /**
+   * An Async that retrieve the performances (for Radarchart) of the User
+   * @return {array} user performances
+   */
   async getUserPerformance() {
     const response = await this._fetchJSON("performance");
     const data = await response.json();
-    return this.Modelisation.adaptUserPerformance(data);
+    return this.Modelisation.adaptUserPerformance(data.data.data);
   }
 }

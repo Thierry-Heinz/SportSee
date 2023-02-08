@@ -13,6 +13,14 @@ import {
   Legend,
 } from "recharts";
 
+/**
+ *
+ * Display a custom tooltip
+ * @component
+ * @param {boolean} active
+ * @param {Array} payload
+ * @returns  {HTMLElement} div.custom-tooltip
+ */
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -26,9 +34,23 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.array,
+};
+
 /**
- *
- * @returns {HTMLElement}
+ * 
+ * Display the User daily activity for a week in the form of a Bar chart
+ * @component
+ * @param {object} sizes
+ * @param {array} data
+ * @param {object} colors
+ * @return ( <Barchart
+                sizes={{minWidth,minHeight,maxWidth,maxHeight}}
+                data={data}
+                colors={{dataKey1Color,dataKey2Color,titleColor,textColor,backgroundColor}}
+              />)
  */
 export default function Barchart({ sizes, data, colors }) {
   return (
@@ -114,4 +136,8 @@ export default function Barchart({ sizes, data, colors }) {
   );
 }
 
-Barchart.propTypes = {};
+Barchart.propTypes = {
+  sizes: PropTypes.object,
+  data: PropTypes.array.isRequired,
+  colors: PropTypes.object,
+};

@@ -12,6 +12,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+/**
+ * The different routes of the app
+ * @component
+ * @return  <ReactElement />
+ */
 export default function Router() {
   return <RouterProvider router={router} />;
 }

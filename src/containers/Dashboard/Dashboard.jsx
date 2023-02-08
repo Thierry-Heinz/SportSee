@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
+// import Data handling and adapter
 import ApiCall from "../../utils/Service";
 import colors from "../../utils/colors";
+
+// import stylized Components from style.js
 import {
   StyledDashboardWrapper,
   UserDashboard,
@@ -13,21 +16,24 @@ import {
   Keyinfos,
 } from "./style";
 
-// import Layout
+// import Layout Components
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-//import Components
+//import Specific User Components
 import Userheader from "../../components/Userheader";
-import Keyinfocard from "../../components/Keyinfocard";
+import KeyInfoCard from "../../components/KeyInfoCard";
 import Barchart from "../../components/Barchart";
 import Linechart from "../../components/Linechart";
 import Radarchart from "../../components/Radarchart";
 import Radialbarchart from "../../components/Radialbarchart";
 
 /**
- * @params {number} userID from Url params (react-router)
- * @returns {HTMLElement} the Dashboard page made of several components
+ *
+ * Display the User Dashboard
+ * @component
+ * @param {number} userID from Url params ( from react-router)
+ * @return {ReactElement} the Dashboard page made of several components
  */
 
 export default function Dashboard() {
@@ -68,8 +74,6 @@ export default function Dashboard() {
 
   const navBarHeight = 91;
   const sideBarWidth = 117;
-
-  console.log(userData.userPerformances);
 
   return (
     <StyledDashboardWrapper>
@@ -144,7 +148,7 @@ export default function Dashboard() {
             </ChartsWrapper>
             <Keyinfos>
               {userData.keyDatas.map((infoCard, i) => (
-                <Keyinfocard
+                <KeyInfoCard
                   key={`${i}-${infoCard.name}`}
                   infoCard={infoCard}
                 />

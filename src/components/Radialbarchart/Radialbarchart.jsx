@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import ChartWrapperContainer from "../ChartWrapperContainer";
 
 import {
@@ -14,6 +15,17 @@ import colors from "../../utils/colors";
 const ChartWrapperContainerWBckg = styled(ChartWrapperContainer)`
   background-color: ${colors.lightgrey};
 `;
+
+/**
+ * Display the User Score in the form of a Radial bar chart
+ * @param {object} sizes 
+ * @param {array} data
+ * @return (    <Radialbarchart
+                  data={data}
+                 
+                sizes={{minWidth,minHeight,maxWidth,maxHeight}}
+                />)
+ */
 
 const Radialbarchart = ({ sizes, data }) => {
   let scaledValue = getScaledValue(data[0].value, 0, 100, 200, -200);
@@ -41,3 +53,8 @@ const Radialbarchart = ({ sizes, data }) => {
 };
 
 export default Radialbarchart;
+
+Radialbarchart.propTypes = {
+  sizes: PropTypes.object,
+  data: PropTypes.array.isRequired,
+};

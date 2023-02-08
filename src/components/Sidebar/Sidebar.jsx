@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Aside, IconButtonsWrapper, CopyRight } from "./style.js";
 import IconButton from "../IconButton/IconButton.jsx";
 
@@ -13,6 +14,12 @@ const services = [
   { name: "Body Building", icon: BodyBuilding },
 ];
 
+/**
+ * Display the Sidebar of the dashboard
+ * @component
+ * @param {number} sideBarWidth
+ * @return (<Sidebar sideBarWidth={sideBarWidth} />)
+ */
 export default function Sidebar({ sideBarWidth }) {
   return (
     <Aside sideBarWidth={sideBarWidth}>
@@ -31,3 +38,7 @@ export default function Sidebar({ sideBarWidth }) {
     </Aside>
   );
 }
+
+Sidebar.propTypes = {
+  sideBarWidth: PropTypes.number,
+};

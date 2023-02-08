@@ -41,5 +41,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.0"
   }
 }

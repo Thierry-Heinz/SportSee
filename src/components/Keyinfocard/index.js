@@ -1,1 +1,1 @@
-export { default } from "./Keyinfocard";
+export { default } from "./KeyInfoCard";

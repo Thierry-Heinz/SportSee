@@ -1,6 +1,19 @@
+import PropTypes from "prop-types";
 import { Header, Title, SubTitle } from "./style.js";
 
-export default function UserHeader({ title, titleColor, subTitle }) {
+/**
+ * Display the User first name and custom sub-title in Dashboard
+ * @component
+ * @param {string} title
+ * @param {string} subTitle
+ * @param {string} titleColor
+ * @return (<Userheader
+            title={title}
+            titleColor={titleColor}
+            subTitle={subTitle}
+          />)
+ */
+const UserHeader = ({ title, titleColor, subTitle }) => {
   return (
     <Header>
       <Title firstNameColor={titleColor}>
@@ -9,4 +22,12 @@ export default function UserHeader({ title, titleColor, subTitle }) {
       <SubTitle>{subTitle}</SubTitle>
     </Header>
   );
-}
+};
+
+UserHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string,
+  titleColor: PropTypes.string,
+};
+
+export default UserHeader;

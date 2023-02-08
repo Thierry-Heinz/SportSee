@@ -1,13 +1,17 @@
+import PropTypes from "prop-types";
 import ChartWrapperContainer from "../ChartWrapperContainer";
 
-import {
-  WrapperContainer,
-  StyledResponsiveContainer,
-  Title,
-  WeBckg,
-} from "./style";
+import { StyledResponsiveContainer, Title, WeBckg } from "./style";
 import { LineChart, Line, XAxis, Tooltip } from "recharts";
 
+/**
+ *
+ * Display a custom tooltip
+ * @component
+ * @param {boolean} active
+ * @param {Array} payload
+ * @returns  {HTMLElement} div.custom-tooltip
+ */
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -20,6 +24,23 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.array,
+};
+
+/**
+ * Display the User Averag Sessions in form of a linechart within a seven day week
+ * @component
+ * @param {object} sizes
+ * @param {array} data
+ * @param {object} colors
+ * @return ( <Linechart
+                  sizes={{minWidth,minHeight,maxWidth,maxHeight}}
+                  data={data}
+                  colors={{tooltipColor, lineColor, backgroundColor}}
+                />)
+ */
 const Linechart = ({ sizes, data, colors }) => {
   return (
     <ChartWrapperContainer sizes={sizes}>
@@ -64,3 +85,9 @@ const Linechart = ({ sizes, data, colors }) => {
 };
 
 export default Linechart;
+
+Linechart.propTypes = {
+  sizes: PropTypes.object,
+  data: PropTypes.array.isRequired,
+  colors: PropTypes.object,
+};

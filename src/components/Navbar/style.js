@@ -24,12 +24,14 @@ export const Header = styled.header`
     flex: 1;
     margin: 0;
     list-style: none;
-    li a {
+    li button {
       color: ${colors.white};
       text-decoration: none;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
       font-size: 24px;
+      background-color: transparent;
+      border: none;
     }
   }
 `;

@@ -1,6 +1,14 @@
+import PropTypes from "prop-types";
 import { InfoCard } from "./style";
 
-export default function Keyinfocard({ infoCard }) {
+/**
+ * Display Key info in a card on the dashboard
+ * @component
+ * @param {object} infocard
+ * @return (<Keyinfocard infoCard={infoCard} />)
+ */
+
+export default function KeyInfoCard({ infoCard }) {
   return (
     <InfoCard backgroundColor={infoCard.color}>
       <div className="icon">
@@ -13,3 +21,7 @@ export default function Keyinfocard({ infoCard }) {
     </InfoCard>
   );
 }
+
+KeyInfoCard.propTypes = {
+  infoCard: PropTypes.object.isRequired,
+};

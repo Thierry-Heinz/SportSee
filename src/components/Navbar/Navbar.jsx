@@ -1,7 +1,16 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { Header } from "./style";
 import Logo from "../../assets/logo.svg";
+
+/**
+ * Display the navbar of the dashboard
+ * @component
+ * @param {number} navBarHeight 
+ * @return (
+      <Navbar navBarHeight={navBarHeight} />)
+ */
 export default function Navbar({ navBarHeight }) {
   return (
     <Header navBarHeight={navBarHeight}>
@@ -10,18 +19,22 @@ export default function Navbar({ navBarHeight }) {
       </Link>
       <ul>
         <li>
-          <a href="#">Accueil</a>
+          <button>Accueil</button>
         </li>
         <li>
-          <a href="#">Profil</a>
+          <button>Profil</button>
         </li>
         <li>
-          <a href="#">Réglage</a>
+          <button>Réglage</button>
         </li>
         <li>
-          <a href="#">Communauté</a>
+          <button>Communauté</button>
         </li>
       </ul>
     </Header>
   );
 }
+
+Navbar.propTypes = {
+  navBarHeight: PropTypes.number,
+};

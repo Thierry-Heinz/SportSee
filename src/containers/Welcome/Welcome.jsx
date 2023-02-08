@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+
+/**
+ * Display a welcome page to switch between the two mock users
+ * @return <ReactElement />
+ */
 export default function Welcome() {
   return (
     <>

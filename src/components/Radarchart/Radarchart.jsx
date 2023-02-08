@@ -1,7 +1,22 @@
+import PropTypes from "prop-types";
 import ChartWrapperContainer from "../ChartWrapperContainer";
 
 import { StyledResponsiveContainer } from "./style";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
+
+/**
+ * 
+ * Display the User performances in the form of a Radar chart
+ * @component
+ * @param {object} sizes
+ * @param {array} data
+ * @param {object} colors
+ * @return (<Radarchart
+                  sizes={{minWidth,minHeight,maxWidth,maxHeight}}
+                  data={data}
+                  colors={{textColor, lineColor, styleBackgroundColor, areaColor}}
+                />)
+ */
 
 const Radarchart = ({ sizes, colors, data }) => {
   return (
@@ -33,3 +48,9 @@ const Radarchart = ({ sizes, colors, data }) => {
 };
 
 export default Radarchart;
+
+Radarchart.propTypes = {
+  sizes: PropTypes.object,
+  data: PropTypes.array.isRequired,
+  colors: PropTypes.object,
+};

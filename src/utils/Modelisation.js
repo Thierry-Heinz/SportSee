@@ -7,11 +7,18 @@ import chicken from "../assets/chicken.svg";
 import cheeseburger from "../assets/cheeseburger.svg";
 
 /**
- * @param {id} id of the user
- * @returns {class} UserData object
+ *
+ * Modelisation: an adapter Class that transform data for each charts
+ * @return {class} Modelisation class object
+ *
  */
 
 class Modelisation {
+  /**
+   * A method adapting the key info data
+   * @param {object} dataObject
+   * @return {array} keyDatas
+   */
   adaptKeyData(dataObject) {
     const keyDatas = [];
     for (const data in dataObject) {
@@ -53,11 +60,12 @@ class Modelisation {
     return keyDatas;
   }
 
+  /**
+   * A method adapting the user performances info data
+   * @param {array} dataObject
+   * @return {array} userPerformances
+   */
   adaptUserPerformance(dataObject) {
-    const {
-      data: { data },
-    } = dataObject;
-
     const subjects = [
       "Cardio",
       "Energie",
@@ -68,8 +76,7 @@ class Modelisation {
     ];
 
     const userPerformances = [];
-    data.forEach((singleData) => {
-      console.log(singleData);
+    dataObject.forEach((singleData) => {
       const data = {
         subject: subjects[singleData.kind - 1],
         A: parseInt(singleData.value),
@@ -81,6 +88,11 @@ class Modelisation {
     return userPerformances.reverse();
   }
 
+  /**
+   * A method adapting the user score info data
+   * @param {array} dataObject
+   * @return {array} userScore
+   */
   adaptUserScore(dataObject) {
     const userScore = [
       {
@@ -93,6 +105,11 @@ class Modelisation {
     return userScore;
   }
 
+  /**
+   * A method adapting the user average sessions info data
+   * @param {array} dataObject
+   * @return {array} userAverageSessions
+   */
   adaptUserAverageSessions(dataObject) {
     const day = ["L", "M", "M", "J", "V", "S", "D"];
     const userAverageSessions = [];
@@ -107,6 +124,11 @@ class Modelisation {
     return userAverageSessions;
   }
 
+  /**
+   * A method adapting the user activity info data
+   * @param {array} dataObject
+   * @return {array} userAverageSessions
+   */
   adaptUserActivity(dataObject) {
     const userActivity = [];
 

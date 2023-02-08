@@ -1,4 +1,17 @@
+import PropTypes from "prop-types";
 import { Button } from "./style";
+
+/**
+ * Display the button with icon in sidebar
+ * @component
+ * @param {string} iconSrc
+ * @param {string} name
+ *  
+ * @return ( <IconButton
+            iconSrc={iconSrc}
+            name={name}
+          />)
+ */
 
 const IconButton = ({ iconSrc, name }) => {
   return (
@@ -8,6 +21,11 @@ const IconButton = ({ iconSrc, name }) => {
       </div>
     </Button>
   );
+};
+
+IconButton.propTypes = {
+  iconSrc: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
 
 export default IconButton;
