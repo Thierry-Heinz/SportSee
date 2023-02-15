@@ -10,7 +10,6 @@ import {
   StyledDashboardWrapper,
   UserDashboard,
   Main,
-  Section,
   ChartsWrapper,
   ChartsRow,
   Keyinfos,
@@ -87,15 +86,16 @@ export default function Dashboard() {
             titleColor={colors.primary}
             subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
           />
-          <Section>
-            <ChartsWrapper>
+          <ChartsWrapper>
+            <ChartsRow
+              area={{
+                rowStart: 1,
+                rowEnd: 1,
+                colStart: 1,
+                colEnd: 2,
+              }}
+            >
               <Barchart
-                sizes={{
-                  minWidth: 839,
-                  minHeight: 320,
-                  maxWidth: 1400,
-                  maxHeight: 500,
-                }}
                 data={userData.userActivity}
                 colors={{
                   dataKey1Color: colors.darkgrey,
@@ -105,48 +105,42 @@ export default function Dashboard() {
                   backgroundColor: colors.lightgrey,
                 }}
               />
-              <ChartsRow>
-                <Linechart
-                  sizes={{
-                    minWidth: 258,
-                    minHeight: 263,
-                    maxWidth: 1400,
-                    maxHeight: 500,
-                  }}
-                  data={userData.userAverageSessions}
-                  colors={{
-                    tooltipColor: colors.black,
-                    lineColor: colors.white,
-                    backgroundColor: colors.primary,
-                  }}
-                />
-                <Radarchart
-                  sizes={{
-                    minWidth: 258,
-                    minHeight: 263,
-                    maxWidth: 1400,
-                    maxHeight: 500,
-                  }}
-                  colors={{
-                    textColor: colors.white,
-                    lineColor: colors.white,
-                    styleBackgroundColor: colors.darkgrey,
-                    areaColor: colors.primary,
-                  }}
-                  data={userData.userPerformances}
-                />
-                <Radialbarchart
-                  data={userData.userScore}
-                  sizes={{
-                    minWidth: 258,
-                    minHeight: 263,
-                    maxWidth: 1400,
-                    maxHeight: 500,
-                  }}
-                />
-              </ChartsRow>
-            </ChartsWrapper>
-            <Keyinfos>
+            </ChartsRow>
+            <ChartsRow
+              area={{
+                rowStart: 2,
+                rowEnd: 2,
+                colStart: 1,
+                colEnd: 2,
+              }}
+            >
+              <Linechart
+                data={userData.userAverageSessions}
+                colors={{
+                  tooltipColor: colors.black,
+                  lineColor: colors.white,
+                  backgroundColor: colors.primary,
+                }}
+              />
+              <Radarchart
+                colors={{
+                  textColor: colors.white,
+                  lineColor: colors.white,
+                  styleBackgroundColor: colors.darkgrey,
+                  areaColor: colors.primary,
+                }}
+                data={userData.userPerformances}
+              />
+              <Radialbarchart data={userData.userScore} />
+            </ChartsRow>
+            <Keyinfos
+              area={{
+                rowStart: 1,
+                rowEnd: 2,
+                colStart: 3,
+                colEnd: 3,
+              }}
+            >
               {userData.keyDatas.map((infoCard, i) => (
                 <KeyInfoCard
                   key={`${i}-${infoCard.name}`}
@@ -154,7 +148,7 @@ export default function Dashboard() {
                 />
               ))}
             </Keyinfos>
-          </Section>
+          </ChartsWrapper>
         </UserDashboard>
       </Main>
     </StyledDashboardWrapper>

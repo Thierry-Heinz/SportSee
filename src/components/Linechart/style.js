@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 import colors from "../../utils/colors";
 
+export const WrapperContainerWBckg = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const WeBckg = styled.div`
   position: absolute;
   top: 0;
@@ -10,6 +15,7 @@ export const WeBckg = styled.div`
   width: 30%;
   height: 100%;
   background-color: #e60000;
+  border-radius: 0 5px 5px 0;
 `;
 
 export const Title = styled.h3`

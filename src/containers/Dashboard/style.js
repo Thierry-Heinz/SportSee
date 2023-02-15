@@ -18,24 +18,28 @@ export const UserDashboard = styled.div`
   padding: 68px 107px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
-export const Section = styled.section`
-  display: flex;
-  gap: 31px;
-`;
-
-export const ChartsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  flex-wrap: wrap;
+export const ChartsWrapper = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr 258px;
+  grid-template-rows: 1fr 1fr;
+  grid-column: span 1;
   gap: 30px;
 `;
 
 export const ChartsRow = styled.div`
   display: flex;
   gap: 30px;
+  grid-area: ${(props) => {
+    return `
+  ${props.area.rowStart} /
+  ${props.area.colStart} /
+      ${props.area.rowEnd} / span
+      ${props.area.colEnd}
+  `;
+  }};
 `;
 
 export const Keyinfos = styled.div`
@@ -43,4 +47,12 @@ export const Keyinfos = styled.div`
   display: flex;
   flex-direction: column;
   gap: 39px;
+  grid-area: ${(props) => {
+    return `
+  ${props.area.rowStart} /
+  ${props.area.colStart} /
+     span ${props.area.rowEnd} /
+      ${props.area.colEnd}
+  `;
+  }};
 `;

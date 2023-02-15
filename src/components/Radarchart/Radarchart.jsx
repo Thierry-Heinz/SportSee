@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import ChartWrapperContainer from "../ChartWrapperContainer";
 
-import { StyledResponsiveContainer } from "./style";
+import { WrapperContainerWBckg, StyledResponsiveContainer } from "./style";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 /**
@@ -18,9 +17,9 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
                 />)
  */
 
-const Radarchart = ({ sizes, colors, data }) => {
+const Radarchart = ({ colors, data }) => {
   return (
-    <ChartWrapperContainer sizes={sizes}>
+    <WrapperContainerWBckg>
       <StyledResponsiveContainer
         styleBackgroundColor={colors.styleBackgroundColor}
         textColor={colors.textColor}
@@ -43,7 +42,7 @@ const Radarchart = ({ sizes, colors, data }) => {
           />
         </RadarChart>
       </StyledResponsiveContainer>
-    </ChartWrapperContainer>
+    </WrapperContainerWBckg>
   );
 };
 

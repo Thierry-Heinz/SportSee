@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 
+export const WrapperContainerWBckg = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
   background-color: ${(props) => props.styleBackgroundColor};
   border-radius: 5px;

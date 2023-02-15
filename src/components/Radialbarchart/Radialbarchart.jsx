@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import ChartWrapperContainer from "../ChartWrapperContainer";
 
 import {
+  WrapperContainerWBckg,
   StyledResponsiveContainer,
   Title,
   RenderLegendStyled,
@@ -11,10 +11,6 @@ import { getScaledValue } from "./utils";
 import { RadialBarChart, RadialBar } from "recharts";
 import styled from "styled-components";
 import colors from "../../utils/colors";
-
-const ChartWrapperContainerWBckg = styled(ChartWrapperContainer)`
-  background-color: ${colors.lightgrey};
-`;
 
 /**
  * Display the User Score in the form of a Radial bar chart
@@ -27,13 +23,17 @@ const ChartWrapperContainerWBckg = styled(ChartWrapperContainer)`
                 />)
  */
 
-const Radialbarchart = ({ sizes, data }) => {
+const Radialbarchart = ({ data }) => {
   let scaledValue = getScaledValue(data[0].value, 0, 100, 200, -200);
   return (
-    <ChartWrapperContainerWBckg sizes={sizes}>
+    <WrapperContainerWBckg>
       <Title>Score</Title>
-      <RenderLegendStyled value={data[0].value} />
-      <StyledResponsiveContainer width="100%" height="100%">
+
+      <StyledResponsiveContainer
+        backgroundColor={colors.backgroundColor}
+        width="100%"
+        height="100%"
+      >
         <RadialBarChart
           cx="50%"
           cy="50%"
@@ -44,11 +44,25 @@ const Radialbarchart = ({ sizes, data }) => {
           barSize={10}
           data={data}
         >
-          <RadialBar clockWise={true} dataKey="value" cornerRadius={5} />
+          <circle
+            className="whiteCircle"
+            cx="50%"
+            cy="50%"
+            r="25%"
+            stroke="none"
+            fill={colors.white}
+          />
+
+          <RadialBar
+            clockWise={true}
+            dataKey="value"
+            cornerRadius={5}
+            background="black"
+          />
         </RadialBarChart>
       </StyledResponsiveContainer>
-      <WhiteCircle />
-    </ChartWrapperContainerWBckg>
+      <RenderLegendStyled value={data[0].value} />
+    </WrapperContainerWBckg>
   );
 };
 

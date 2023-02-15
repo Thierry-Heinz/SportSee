@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
-import ChartWrapperContainer from "../ChartWrapperContainer";
-
-import { StyledResponsiveContainer, Title, WeBckg } from "./style";
+import styled from "styled-components";
+import {
+  WrapperContainerWBckg,
+  StyledResponsiveContainer,
+  Title,
+  WeBckg,
+} from "./style";
 import { LineChart, Line, XAxis, Tooltip } from "recharts";
 
 /**
@@ -41,9 +45,9 @@ CustomTooltip.propTypes = {
                   colors={{tooltipColor, lineColor, backgroundColor}}
                 />)
  */
-const Linechart = ({ sizes, data, colors }) => {
+const Linechart = ({ data, colors }) => {
   return (
-    <ChartWrapperContainer sizes={sizes}>
+    <WrapperContainerWBckg>
       <Title>Durée moyenne des sessions</Title>
       <WeBckg />
       <StyledResponsiveContainer
@@ -80,7 +84,7 @@ const Linechart = ({ sizes, data, colors }) => {
           />
         </LineChart>
       </StyledResponsiveContainer>
-    </ChartWrapperContainer>
+    </WrapperContainerWBckg>
   );
 };
 
