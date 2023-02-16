@@ -38,7 +38,7 @@ const Radialbarchart = ({ data }) => {
           cx="50%"
           cy="50%"
           innerRadius="70%"
-          outerRadius="80%"
+          outerRadius="70%"
           startAngle={200}
           endAngle={scaledValue}
           barSize={10}
@@ -48,7 +48,7 @@ const Radialbarchart = ({ data }) => {
             className="whiteCircle"
             cx="50%"
             cy="50%"
-            r="25%"
+            r="30%"
             stroke="none"
             fill={colors.white}
           />

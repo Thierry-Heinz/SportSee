@@ -32,6 +32,7 @@ export const ChartsWrapper = styled.section`
 export const ChartsRow = styled.div`
   display: flex;
   gap: 30px;
+  flex-wrap: auto;
   grid-area: ${(props) => {
     return `
   ${props.area.rowStart} /

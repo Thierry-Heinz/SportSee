@@ -37,7 +37,21 @@ export default class Api {
       ? `${baseUrlRequest}/${endpoint}`
       : `${baseUrlRequest}`;
 
-    const apiResponse = fetch(urlRequest);
+    const apiResponse = fetch(urlRequest)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        // Do something with the response
+        return responseJson;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return apiResponse;
   }
 
@@ -47,13 +61,12 @@ export default class Api {
    */
   async getUserData() {
     const response = await this._fetchJSON();
-    const data = await response.json();
 
     const userData = {
-      firstName: data.data.userInfos.firstName,
-      keyDatas: this.Modelisation.adaptKeyData(data.data.keyData),
+      firstName: response.data.userInfos.firstName,
+      keyDatas: this.Modelisation.adaptKeyData(response.data.keyData),
       userScore: this.Modelisation.adaptUserScore(
-        data.data.todayScore || data.data.score
+        response.data.todayScore || response.data.score
       ),
     };
     return userData;
@@ -92,8 +105,7 @@ export default class Api {
    */
   async getUserAverageSessions() {
     const response = await this._fetchJSON("average-sessions");
-    const data = await response.json();
-    return this.Modelisation.adaptUserAverageSessions(data.data.sessions);
+    return this.Modelisation.adaptUserAverageSessions(response.data.sessions);
   }
 
   /**
@@ -102,9 +114,7 @@ export default class Api {
    */
   async getUserActivity() {
     const response = await this._fetchJSON("activity");
-    const data = await response.json();
-
-    return this.Modelisation.adaptUserActivity(data.data.sessions);
+    return this.Modelisation.adaptUserActivity(response.data.sessions);
   }
 
   /**
@@ -113,7 +123,6 @@ export default class Api {
    */
   async getUserPerformance() {
     const response = await this._fetchJSON("performance");
-    const data = await response.json();
-    return this.Modelisation.adaptUserPerformance(data.data.data);
+    return this.Modelisation.adaptUserPerformance(response.data.data);
   }
 }

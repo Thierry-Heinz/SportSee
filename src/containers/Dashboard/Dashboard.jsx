@@ -26,6 +26,7 @@ import Barchart from "../../components/Barchart";
 import Linechart from "../../components/Linechart";
 import Radarchart from "../../components/Radarchart";
 import Radialbarchart from "../../components/Radialbarchart";
+import Loader from "../../components/Loader";
 
 /**
  *
@@ -37,6 +38,7 @@ import Radialbarchart from "../../components/Radialbarchart";
 
 export default function Dashboard() {
   const { userId } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
     keyDatas: [],
@@ -66,91 +68,118 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    fetchData().then((res) => {
-      setUserData(res);
-    });
+    fetchData()
+      .then((res) => {
+        setIsLoading(true);
+        setUserData(res);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(true);
+      });
   }, []);
 
   const navBarHeight = 91;
   const sideBarWidth = 117;
 
   return (
-    <StyledDashboardWrapper>
-      <Navbar navBarHeight={navBarHeight} />
-      <Main navBarHeight={navBarHeight}>
-        <Sidebar sideBarWidth={sideBarWidth} />
+    <>
+      {!isLoading ? (
+        <StyledDashboardWrapper>
+          <Navbar navBarHeight={navBarHeight} />
+          <Main navBarHeight={navBarHeight}>
+            <Sidebar sideBarWidth={sideBarWidth} />
 
-        <UserDashboard sideBarWidth={sideBarWidth}>
-          <Userheader
-            title={userData.firstName}
-            titleColor={colors.primary}
-            subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
-          />
-          <ChartsWrapper>
-            <ChartsRow
-              area={{
-                rowStart: 1,
-                rowEnd: 1,
-                colStart: 1,
-                colEnd: 2,
-              }}
-            >
-              <Barchart
-                data={userData.userActivity}
-                colors={{
-                  dataKey1Color: colors.darkgrey,
-                  dataKey2Color: colors.primary,
-                  titleColor: colors.darkgrey2,
-                  textColor: colors.mediumgrey,
-                  backgroundColor: colors.lightgrey,
-                }}
+            <UserDashboard sideBarWidth={sideBarWidth}>
+              <Userheader
+                title={userData.firstName}
+                titleColor={colors.primary}
+                subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
               />
-            </ChartsRow>
-            <ChartsRow
-              area={{
-                rowStart: 2,
-                rowEnd: 2,
-                colStart: 1,
-                colEnd: 2,
-              }}
-            >
-              <Linechart
-                data={userData.userAverageSessions}
-                colors={{
-                  tooltipColor: colors.black,
-                  lineColor: colors.white,
-                  backgroundColor: colors.primary,
-                }}
+              <ChartsWrapper>
+                <ChartsRow
+                  area={{
+                    rowStart: 1,
+                    rowEnd: 1,
+                    colStart: 1,
+                    colEnd: 2,
+                  }}
+                >
+                  <Barchart
+                    data={userData.userActivity}
+                    colors={{
+                      dataKey1Color: colors.darkgrey,
+                      dataKey2Color: colors.primary,
+                      titleColor: colors.darkgrey2,
+                      textColor: colors.mediumgrey,
+                      backgroundColor: colors.lightgrey,
+                    }}
+                  />
+                </ChartsRow>
+                <ChartsRow
+                  area={{
+                    rowStart: 2,
+                    rowEnd: 2,
+                    colStart: 1,
+                    colEnd: 2,
+                  }}
+                >
+                  <Linechart
+                    data={userData.userAverageSessions}
+                    colors={{
+                      tooltipColor: colors.black,
+                      lineColor: colors.white,
+                      backgroundColor: colors.primary,
+                    }}
+                  />
+                  <Radarchart
+                    colors={{
+                      textColor: colors.white,
+                      lineColor: colors.white,
+                      styleBackgroundColor: colors.darkgrey,
+                      areaColor: colors.primary,
+                    }}
+                    data={userData.userPerformances}
+                  />
+                  <Radialbarchart data={userData.userScore} />
+                </ChartsRow>
+                <Keyinfos
+                  area={{
+                    rowStart: 1,
+                    rowEnd: 2,
+                    colStart: 3,
+                    colEnd: 3,
+                  }}
+                >
+                  {userData.keyDatas.map((infoCard, i) => (
+                    <KeyInfoCard
+                      key={`${i}-${infoCard.name}`}
+                      infoCard={infoCard}
+                    />
+                  ))}
+                </Keyinfos>
+              </ChartsWrapper>
+            </UserDashboard>
+          </Main>
+        </StyledDashboardWrapper>
+      ) : (
+        <StyledDashboardWrapper>
+          <Navbar navBarHeight={navBarHeight} />
+          <Main navBarHeight={navBarHeight}>
+            <Sidebar sideBarWidth={sideBarWidth} />
+
+            <UserDashboard sideBarWidth={sideBarWidth}>
+              <Userheader
+                title=""
+                titleColor={colors.primary}
+                subTitle="Veuillez patienter pendant que nous récuperons vos données. Merci !"
               />
-              <Radarchart
-                colors={{
-                  textColor: colors.white,
-                  lineColor: colors.white,
-                  styleBackgroundColor: colors.darkgrey,
-                  areaColor: colors.primary,
-                }}
-                data={userData.userPerformances}
-              />
-              <Radialbarchart data={userData.userScore} />
-            </ChartsRow>
-            <Keyinfos
-              area={{
-                rowStart: 1,
-                rowEnd: 2,
-                colStart: 3,
-                colEnd: 3,
-              }}
-            >
-              {userData.keyDatas.map((infoCard, i) => (
-                <KeyInfoCard
-                  key={`${i}-${infoCard.name}`}
-                  infoCard={infoCard}
-                />
-              ))}
-            </Keyinfos>
-          </ChartsWrapper>
-        </UserDashboard>
-      </Main>
-    </StyledDashboardWrapper>
+              <Loader />
+            </UserDashboard>
+          </Main>
+        </StyledDashboardWrapper>
+      )}
+    </>
   );
 }

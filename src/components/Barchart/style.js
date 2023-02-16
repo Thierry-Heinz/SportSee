@@ -41,6 +41,7 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
   .custom-tooltip {
     background-color: ${colors.primary};
     border: none;
+    outline: none;
     padding: 5px 10px;
     display: flex;
     flex-direction: column;

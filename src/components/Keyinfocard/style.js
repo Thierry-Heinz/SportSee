@@ -11,6 +11,7 @@ export const InfoCard = styled.div`
   gap: 24px;
   background-color: #fbfbfb;
   border-radius: 5px;
+  max-height: 124.25px;
   .icon {
     border-radius: 6px;
     background-color: rgba(${(props) => hexToRgb(props.backgroundColor)}, 10%);
