@@ -10,7 +10,7 @@ export const Header = styled.header`
   margin-bottom: 50px;
 
   @media ${device.laptopL.mediaQuery} {
-    gap: calc(${device.laptopL.gap});
+    gap: ${device.laptopL.gap};
     margin-bottom: 77px;
   }
 `;

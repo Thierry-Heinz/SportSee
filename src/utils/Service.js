@@ -31,28 +31,31 @@ export default class Api {
    * @returns {promise} a Promise containing that will contain the data object
    *
    */
-  _fetchJSON(endpoint) {
-    let baseUrlRequest = `${this._baseURL}/${this._userId}`;
+  async _fetchJSON(endpoint) {
+    const env = "local";
+    let baseUrlRequest =
+      env === "local" ? `${this._baseURL}/${this._userId}` : "";
     let urlRequest = endpoint
       ? `${baseUrlRequest}/${endpoint}`
       : `${baseUrlRequest}`;
 
-    const apiResponse = fetch(urlRequest)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Something went wrong");
-      })
-      .then((responseJson) => {
-        // Do something with the response
-        return responseJson;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    let json;
 
-    return apiResponse;
+    try {
+      const response = await fetch(urlRequest);
+      json = await response.json();
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        // Unexpected token < in JSON
+        console.log("There was a SyntaxError", error);
+      } else {
+        console.log("There was an error", error);
+      }
+    }
+
+    if (json) {
+      return json;
+    }
   }
 
   /**

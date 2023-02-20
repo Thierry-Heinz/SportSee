@@ -48,14 +48,15 @@ CustomTooltip.propTypes = {
 const Linechart = ({ data, colors }) => {
   const [mousePosX, setMousePosX] = useState();
   const handleMouseMove = () => {
-    const dotRect = document
-      .querySelector(".recharts-active-dot circle")
-      .getBoundingClientRect();
-    const containerRect = document
-      .querySelector(".lineChartContainer")
-      .getBoundingClientRect();
-    const xPos = dotRect.left - containerRect.left + 8;
-    setMousePosX(xPos);
+    const activeDot = document.querySelector(".recharts-active-dot circle");
+    if (activeDot) {
+      const dotRect = activeDot.getBoundingClientRect();
+      const containerRect = document
+        .querySelector(".lineChartContainer")
+        .getBoundingClientRect();
+      const xPos = dotRect.left - containerRect.left + 8;
+      setMousePosX(xPos);
+    }
   };
 
   return (

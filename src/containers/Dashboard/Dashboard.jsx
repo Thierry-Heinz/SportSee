@@ -39,6 +39,9 @@ import Loader from "../../components/Loader";
 export default function Dashboard() {
   const { userId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState(
+    "Veuillez patienter pendant que nous récupérons vos données"
+  );
   const [userData, setUserData] = useState({
     firstName: "",
     keyDatas: [],
@@ -68,15 +71,18 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchData()
       .then((res) => {
-        setIsLoading(true);
         setUserData(res);
+        setMsg("Félicitation ! Vous avez explosé vos objectifs hier 👏");
         setIsLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(true);
+      .catch((err) => {
+        console.log(err);
+        setMsg(
+          "Désolé, nous rencontrons des problèmes avec nos serveurs, veuillez réessayer plus tard."
+        );
       });
   }, []);
 
@@ -84,102 +90,86 @@ export default function Dashboard() {
   const sideBarWidth = 117;
 
   return (
-    <>
-      {!isLoading ? (
-        <StyledDashboardWrapper>
-          <Navbar navBarHeight={navBarHeight} />
-          <Main navBarHeight={navBarHeight}>
-            <Sidebar sideBarWidth={sideBarWidth} />
+    <StyledDashboardWrapper>
+      <Navbar navBarHeight={navBarHeight} />
+      <Main navBarHeight={navBarHeight}>
+        <Sidebar sideBarWidth={sideBarWidth} />
 
-            <UserDashboard sideBarWidth={sideBarWidth}>
-              <Userheader
-                title={userData.firstName}
-                titleColor={colors.primary}
-                subTitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
-              />
-              <ChartsWrapper>
-                <ChartsRow
-                  area={{
-                    rowStart: 1,
-                    rowEnd: 1,
-                    colStart: 1,
-                    colEnd: 2,
+        <UserDashboard sideBarWidth={sideBarWidth}>
+          <Userheader
+            title={userData.firstName}
+            titleColor={colors.primary}
+            subTitle={msg}
+          />
+          {!isLoading ? (
+            <ChartsWrapper>
+              <ChartsRow
+                area={{
+                  rowStart: 1,
+                  rowEnd: 1,
+                  colStart: 1,
+                  colEnd: 2,
+                }}
+              >
+                <Barchart
+                  data={userData.userActivity}
+                  colors={{
+                    dataKey1Color: colors.darkgrey,
+                    dataKey2Color: colors.primary,
+                    titleColor: colors.darkgrey2,
+                    textColor: colors.mediumgrey,
+                    backgroundColor: colors.lightgrey,
                   }}
-                >
-                  <Barchart
-                    data={userData.userActivity}
-                    colors={{
-                      dataKey1Color: colors.darkgrey,
-                      dataKey2Color: colors.primary,
-                      titleColor: colors.darkgrey2,
-                      textColor: colors.mediumgrey,
-                      backgroundColor: colors.lightgrey,
-                    }}
-                  />
-                </ChartsRow>
-                <ChartsRow
-                  area={{
-                    rowStart: 2,
-                    rowEnd: 2,
-                    colStart: 1,
-                    colEnd: 2,
+                />
+              </ChartsRow>
+              <ChartsRow
+                area={{
+                  rowStart: 2,
+                  rowEnd: 2,
+                  colStart: 1,
+                  colEnd: 2,
+                }}
+              >
+                <Linechart
+                  data={userData.userAverageSessions}
+                  colors={{
+                    tooltipColor: colors.black,
+                    lineColor: colors.white,
+                    backgroundColor: colors.primary,
                   }}
-                >
-                  <Linechart
-                    data={userData.userAverageSessions}
-                    colors={{
-                      tooltipColor: colors.black,
-                      lineColor: colors.white,
-                      backgroundColor: colors.primary,
-                    }}
-                  />
-                  <Radarchart
-                    colors={{
-                      textColor: colors.white,
-                      lineColor: colors.white,
-                      styleBackgroundColor: colors.darkgrey,
-                      areaColor: colors.primary,
-                    }}
-                    data={userData.userPerformances}
-                  />
-                  <Radialbarchart data={userData.userScore} />
-                </ChartsRow>
-                <Keyinfos
-                  area={{
-                    rowStart: 1,
-                    rowEnd: 2,
-                    colStart: 3,
-                    colEnd: 3,
+                />
+                <Radarchart
+                  colors={{
+                    textColor: colors.white,
+                    lineColor: colors.white,
+                    styleBackgroundColor: colors.darkgrey,
+                    areaColor: colors.primary,
                   }}
-                >
-                  {userData.keyDatas.map((infoCard, i) => (
-                    <KeyInfoCard
-                      key={`${i}-${infoCard.name}`}
-                      infoCard={infoCard}
-                    />
-                  ))}
-                </Keyinfos>
-              </ChartsWrapper>
-            </UserDashboard>
-          </Main>
-        </StyledDashboardWrapper>
-      ) : (
-        <StyledDashboardWrapper>
-          <Navbar navBarHeight={navBarHeight} />
-          <Main navBarHeight={navBarHeight}>
-            <Sidebar sideBarWidth={sideBarWidth} />
-
-            <UserDashboard sideBarWidth={sideBarWidth}>
-              <Userheader
-                title=""
-                titleColor={colors.primary}
-                subTitle="Veuillez patienter pendant que nous récuperons vos données. Merci !"
-              />
-              <Loader />
-            </UserDashboard>
-          </Main>
-        </StyledDashboardWrapper>
-      )}
-    </>
+                  data={userData.userPerformances}
+                />
+                <Radialbarchart data={userData.userScore} />
+              </ChartsRow>
+              <Keyinfos
+                area={{
+                  rowStart: 1,
+                  rowEnd: 2,
+                  colStart: 3,
+                  colEnd: 3,
+                }}
+              >
+                {userData.keyDatas.map((infoCard, i) => (
+                  <KeyInfoCard
+                    key={`${i}-${infoCard.name}`}
+                    infoCard={infoCard}
+                  />
+                ))}
+              </Keyinfos>
+            </ChartsWrapper>
+          ) : (
+            <Loader />
+          )}
+        </UserDashboard>
+      </Main>
+    </StyledDashboardWrapper>
   );
 }
