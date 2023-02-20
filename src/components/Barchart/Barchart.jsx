@@ -58,9 +58,6 @@ export default function Barchart({ data, colors }) {
 
       <StyledResponsiveContainer
         backgroundColor={colors.backgroundColor}
-        // minWidth={sizes.minWidth}
-        // minHeight={sizes.minHeight}
-        // aspect={sizes.maxWidth / sizes.maxHeight}
         width="100%"
         height="100%"
       >

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../utils/Devices";
 
 export const StyledDashboardWrapper = styled.div`
   display: flex;
@@ -15,23 +16,31 @@ export const Main = styled.main`
 `;
 
 export const UserDashboard = styled.div`
-  padding: 68px 107px;
+  padding: 53px 53px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media ${device.laptopL.mediaQuery} {
+    padding: 68px 107px;
+  }
 `;
 
 export const ChartsWrapper = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr 258px;
+  grid-template-columns: 1fr 1fr 200px;
   grid-template-rows: 1fr 1fr;
   grid-column: span 1;
-  gap: 30px;
+  gap: ${device.laptop.gap};
+
+  @media ${device.laptopL.mediaQuery} {
+    gap: ${device.laptopL.gap};
+    grid-template-columns: 1fr 1fr 258px;
+  }
 `;
 
 export const ChartsRow = styled.div`
   display: flex;
-  gap: 30px;
+  gap: ${device.laptop.gap};
   flex-wrap: auto;
   grid-area: ${(props) => {
     return `
@@ -41,19 +50,27 @@ export const ChartsRow = styled.div`
       ${props.area.colEnd}
   `;
   }};
+
+  @media ${device.laptopL.mediaQuery} {
+    gap: ${device.laptopL.gap};
+  }
 `;
 
 export const Keyinfos = styled.div`
-  flex: 0 0 258px;
+  flex: 0 0 200px;
   display: flex;
   flex-direction: column;
-  gap: 39px;
+  gap: ${device.laptop.gap};
   grid-area: ${(props) => {
     return `
-  ${props.area.rowStart} /
-  ${props.area.colStart} /
-     span ${props.area.rowEnd} /
-      ${props.area.colEnd}
-  `;
+    ${props.area.rowStart} /
+    ${props.area.colStart} /
+    span ${props.area.rowEnd} /
+    ${props.area.colEnd}
+    `;
   }};
+  @media ${device.laptopL.mediaQuery} {
+    flex: 0 0 258px;
+    gap: ${device.laptopL.gap};
+  }
 `;

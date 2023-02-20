@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
+import { device } from "../../utils/Devices";
 
 export const WrapperContainerWBckg = styled.div`
   background-color: ${colors.lightgrey};
@@ -13,12 +14,18 @@ export const Title = styled.h3`
   position: absolute;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 18px;
   color: ${colors.darkgrey2};
-  margin-left: 30px;
-  line-height: 24px;
-  margin-top: 24px;
+  font-size: 16px;
+  margin-left: 18px;
+  margin-top: 18px;
+  line-height: 18px;
   width: 50%;
+  @media ${device.laptopL.mediaQuery} {
+    margin-left: 30px;
+    line-height: 24px;
+    margin-top: 24px;
+    font-size: 18px;
+  }
 `;
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
@@ -50,10 +57,10 @@ export const RenderLegendStyled = styled(RenderLegend)`
   text-align: center;
 
   h4 {
-    line-height: 1.5;
+    line-height: 1;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 18px;
     color: ${colors.darkgrey};
     margin: 0;
   }
@@ -61,21 +68,19 @@ export const RenderLegendStyled = styled(RenderLegend)`
   span {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     color: ${colors.mediumgrey};
-    line-height: 1.5;
+    line-height: 1;
+  }
+
+  @media ${device.laptopL.mediaQuery} {
+    h4 {
+      font-size: 26px;
+      line-height: 1.5;
+    }
+    span {
+      font-size: 18px;
+      line-height: 1.5;
+    }
   }
 `;
-
-// export const WhiteCircle = styled.div`
-//   z-index: 100;
-//   position: absolute;
-//   border-radius: 100%;
-//   width: 64%;
-//   height: 64%;
-//   top: 50%;
-//   left: 50%;
-//   background-color: ${colors.white};
-
-//   transform: translate(-50%, -50%);
-// `;

@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import {
   WrapperContainerWBckg,
   StyledResponsiveContainer,
@@ -7,6 +6,7 @@ import {
   WeBckg,
 } from "./style";
 import { LineChart, Line, XAxis, Tooltip } from "recharts";
+import { useState } from "react";
 
 /**
  *
@@ -46,10 +46,22 @@ CustomTooltip.propTypes = {
                 />)
  */
 const Linechart = ({ data, colors }) => {
+  const [mousePosX, setMousePosX] = useState();
+  const handleMouseMove = () => {
+    const dotRect = document
+      .querySelector(".recharts-active-dot circle")
+      .getBoundingClientRect();
+    const containerRect = document
+      .querySelector(".lineChartContainer")
+      .getBoundingClientRect();
+    const xPos = dotRect.left - containerRect.left + 8;
+    setMousePosX(xPos);
+  };
+
   return (
-    <WrapperContainerWBckg>
+    <WrapperContainerWBckg className="lineChartContainer">
       <Title>Durée moyenne des sessions</Title>
-      <WeBckg />
+      <WeBckg xPos={mousePosX} />
       <StyledResponsiveContainer
         backgroundColor={colors.backgroundColor}
         width="100%"
@@ -65,6 +77,7 @@ const Linechart = ({ data, colors }) => {
             left: 10,
             bottom: 20,
           }}
+          onMouseMove={handleMouseMove}
         >
           <XAxis
             dataKey="day"
@@ -91,7 +104,6 @@ const Linechart = ({ data, colors }) => {
 export default Linechart;
 
 Linechart.propTypes = {
-  sizes: PropTypes.object,
   data: PropTypes.array.isRequired,
   colors: PropTypes.object,
 };

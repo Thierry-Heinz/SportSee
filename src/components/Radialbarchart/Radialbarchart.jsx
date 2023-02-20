@@ -5,11 +5,9 @@ import {
   StyledResponsiveContainer,
   Title,
   RenderLegendStyled,
-  WhiteCircle,
 } from "./style";
 import { getScaledValue } from "./utils";
 import { RadialBarChart, RadialBar } from "recharts";
-import styled from "styled-components";
 import colors from "../../utils/colors";
 
 /**

@@ -1,16 +1,24 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
+import { device } from "../../utils/Devices";
 
 export const Title = styled.h3`
   position: absolute;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 15px;
   color: ${colors.darkgrey2};
-  margin-left: 32px;
-  line-height: 24px;
-  margin-top: 24px;
+  font-size: 16px;
+  margin-left: 18px;
+  margin-top: 18px;
+  line-height: 18px;
+  @media ${device.laptopL.mediaQuery} {
+    width: 50%;
+    margin-left: 30px;
+    line-height: 24px;
+    margin-top: 24px;
+    font-size: 18px;
+  }
 `;
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
@@ -19,14 +27,22 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
   .recharts-default-legend {
     display: flex;
     justify-content: flex-end;
-    gap: 32px;
+    gap: 15px;
 
     .recharts-legend-item-text {
       font-family: "Roboto", sans-serif;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
       color: ${colors.mediumgrey} !important;
-      margin-left: 12px;
+      margin-left: 6px;
+    }
+
+    @media ${device.laptopL.mediaQuery} {
+      gap: 32px;
+      .recharts-legend-item-text {
+        font-size: 14px;
+        margin-left: 12px;
+      }
     }
   }
   .recharts-cartesian-grid-horizontal {
@@ -42,16 +58,24 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
     background-color: ${colors.primary};
     border: none;
     outline: none;
-    padding: 5px 10px;
+    padding: 0px 5px;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 0px;
 
     p.label {
       font-family: "Roboto", sans-serif;
       font-weight: 500;
       color: ${colors.white};
-      font-size: 12px;
+      font-size: 10px;
+    }
+
+    @media ${device.laptopL.mediaQuery} {
+      padding: 5px 10px;
+      gap: 7px;
+      p.label {
+        font-size: 12px;
+      }
     }
   }
 `;

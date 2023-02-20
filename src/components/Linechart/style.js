@@ -2,33 +2,45 @@ import { ResponsiveContainer } from "recharts";
 import styled from "styled-components";
 
 import colors from "../../utils/colors";
+import { device } from "../../utils/Devices";
 
 export const WrapperContainerWBckg = styled.div`
   position: relative;
   width: 100%;
+  overflow: hidden;
+
+  border-radius: 5px;
 `;
 
 export const WeBckg = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
-  width: 30%;
+  left: ${(props) => props.xPos}px;
+  width: 100%;
   height: 100%;
   background-color: #e60000;
-  border-radius: 0 5px 5px 0;
 `;
 
 export const Title = styled.h3`
   position: absolute;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 15px;
   color: ${colors.white};
-  margin-left: 34px;
-  line-height: 24px;
-  margin-top: 29px;
-  width: 50%;
+  font-size: 16px;
+  margin-left: 18px;
+  margin-top: 18px;
+  line-height: 18px;
+  width: 100%;
   opacity: 80%;
+  z-index: 20;
+
+  @media ${device.laptopL.mediaQuery} {
+    width: 50%;
+    margin-left: 30px;
+    line-height: 24px;
+    margin-top: 24px;
+    font-size: 18px;
+  }
 `;
 
 export const StyledResponsiveContainer = styled(ResponsiveContainer)`
@@ -50,16 +62,24 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
   .custom-tooltip {
     background-color: ${colors.white};
     border: none;
-    padding: 5px 10px;
+    padding: 0px 5px;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 0px;
 
     p.label {
       font-family: "Roboto", sans-serif;
       font-weight: 500;
       color: ${colors.black};
-      font-size: 12px;
+      font-size: 10px;
+    }
+
+    @media ${device.laptopL.mediaQuery} {
+      padding: 5px 10px;
+      gap: 7px;
+      p.label {
+        font-size: 12px;
+      }
     }
   }
 `;

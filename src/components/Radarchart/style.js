@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
+import { device } from "../../utils/Devices";
 
 export const WrapperContainerWBckg = styled.div`
   position: relative;
@@ -20,6 +21,9 @@ export const StyledResponsiveContainer = styled(ResponsiveContainer)`
     color: ${(props) => props.textColor};
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 9px;
+    @media ${device.laptopL.mediaQuery} {
+      font-size: 12px;
+    }
   }
 `;
