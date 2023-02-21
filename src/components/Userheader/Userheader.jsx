@@ -25,8 +25,8 @@ const UserHeader = ({ title, titleColor, subTitle }) => {
 };
 
 UserHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string,
+  title: PropTypes.string,
+  subTitle: PropTypes.string.isRequired,
   titleColor: PropTypes.string,
 };
 

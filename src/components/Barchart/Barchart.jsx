@@ -42,7 +42,6 @@ CustomTooltip.propTypes = {
  * 
  * Display the User daily activity for a week in the form of a Bar chart
  * @component
- * @param {object} sizes
  * @param {array} data
  * @param {object} colors
  * @return ( <Barchart

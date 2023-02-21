@@ -3,7 +3,7 @@ import colors from "../../utils/colors";
 
 import { hexToRgb } from "../../utils/colors";
 
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const InfoCard = styled.div`
   flex: 1;

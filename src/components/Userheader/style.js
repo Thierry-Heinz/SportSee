@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../utils/colors";
 
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const Header = styled.header`
   display: flex;

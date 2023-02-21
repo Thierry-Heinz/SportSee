@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const WrapperContainerWBckg = styled.div`
   background-color: ${colors.lightgrey};

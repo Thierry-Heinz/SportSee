@@ -12,7 +12,7 @@ import colors from "../../utils/colors";
 
 /**
  * Display the User Score in the form of a Radial bar chart
- * @param {object} sizes 
+ * @component
  * @param {array} data
  * @return (    <Radialbarchart
                   data={data}
@@ -67,6 +67,5 @@ const Radialbarchart = ({ data }) => {
 export default Radialbarchart;
 
 Radialbarchart.propTypes = {
-  sizes: PropTypes.object,
   data: PropTypes.array.isRequired,
 };

@@ -1,0 +1,206 @@
+[
+  {
+    "id": 12,
+    "data": {
+      "userInfos": {
+        "firstName": "Thierry"
+      },
+      "todayScore": 0.99,
+      "keyData": {
+        "calorieCount": 2000,
+        "proteinCount": 5,
+        "carbohydrateCount": 20,
+        "lipidCount": 200
+      },
+      "average": [
+        {
+          "day": 1,
+          "sessionLength": 30
+        },
+        {
+          "day": 2,
+          "sessionLength": 23
+        },
+        { "day": 3, "sessionLength": 45 },
+        { "day": 4, "sessionLength": 50 },
+        {
+          "day": 5,
+          "sessionLength": 0
+        },
+        {
+          "day": 6,
+          "sessionLength": 0
+        },
+        {
+          "day": 7,
+          "sessionLength": 60
+        }
+      ],
+      "activity": [
+        {
+          "day": "2023-02-20",
+          "kilogram": 60,
+          "calories": 300
+        },
+        {
+          "day": "2023-02-21",
+          "kilogram": 62,
+          "calories": 100
+        },
+        {
+          "day": "2023-02-22",
+          "kilogram": 65,
+          "calories": 280
+        },
+        {
+          "day": "2023-02-24",
+          "kilogram": 59,
+          "calories": 120
+        },
+        {
+          "day": "2023-02-25",
+          "kilogram": 66,
+          "calories": 635
+        },
+        {
+          "day": "2023-02-26",
+          "kilogram": 64,
+          "calories": 150
+        },
+        {
+          "day": "2023-02-77",
+          "kilogram": 68,
+          "calories": 600
+        }
+      ],
+      "performance": [
+        {
+          "value": 200,
+          "kind": 1
+        },
+        {
+          "value": 57,
+          "kind": 2
+        },
+        {
+          "value": 23,
+          "kind": 3
+        },
+        {
+          "value": 89,
+          "kind": 4
+        },
+        {
+          "value": 100,
+          "kind": 5
+        },
+        {
+          "value": 45,
+          "kind": 6
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "data": {
+      "userInfos": {
+        "firstName": "Josie"
+      },
+      "todayScore": 0.74,
+      "keyData": {
+        "calorieCount": 2500,
+        "proteinCount": 10,
+        "carbohydrateCount": 30,
+        "lipidCount": 500
+      },
+      "average": [
+        {
+          "day": 1,
+          "sessionLength": 35
+        },
+        {
+          "day": 2,
+          "sessionLength": 20
+        },
+        { "day": 3, "sessionLength": 10 },
+        { "day": 4, "sessionLength": 15 },
+        {
+          "day": 5,
+          "sessionLength": 10
+        },
+        {
+          "day": 6,
+          "sessionLength": 5
+        },
+        {
+          "day": 7,
+          "sessionLength": 20
+        }
+      ],
+      "activity": [
+        {
+          "day": "2021-07-12",
+          "kilogram": 60,
+          "calories": 300
+        },
+        {
+          "day": "2021-07-13",
+          "kilogram": 62,
+          "calories": 100
+        },
+        {
+          "day": "2021-07-14",
+          "kilogram": 65,
+          "calories": 280
+        },
+        {
+          "day": "2021-07-15",
+          "kilogram": 59,
+          "calories": 120
+        },
+        {
+          "day": "2021-07-16",
+          "kilogram": 66,
+          "calories": 635
+        },
+        {
+          "day": "2021-07-17",
+          "kilogram": 64,
+          "calories": 150
+        },
+        {
+          "day": "2021-07-18",
+          "kilogram": 68,
+          "calories": 600
+        }
+      ],
+      "performance": [
+        {
+          "value": 100,
+          "kind": 1
+        },
+        {
+          "value": 80,
+          "kind": 2
+        },
+        {
+          "value": 10,
+          "kind": 3
+        },
+        {
+          "value": 140,
+          "kind": 4
+        },
+        {
+          "value": 25,
+          "kind": 5
+        },
+        {
+          "value": 10,
+          "kind": 6
+        }
+      ]
+    }
+  }
+]

@@ -36,7 +36,6 @@ CustomTooltip.propTypes = {
 /**
  * Display the User Averag Sessions in form of a linechart within a seven day week
  * @component
- * @param {object} sizes
  * @param {array} data
  * @param {object} colors
  * @return ( <Linechart

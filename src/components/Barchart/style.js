@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
 import colors from "../../utils/colors";
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const Title = styled.h3`
+  width: 100%;
   position: absolute;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -13,7 +14,6 @@ export const Title = styled.h3`
   margin-top: 18px;
   line-height: 18px;
   @media ${device.laptopL.mediaQuery} {
-    width: 50%;
     margin-left: 30px;
     line-height: 24px;
     margin-top: 24px;

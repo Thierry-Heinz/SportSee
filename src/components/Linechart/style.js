@@ -2,7 +2,7 @@ import { ResponsiveContainer } from "recharts";
 import styled from "styled-components";
 
 import colors from "../../utils/colors";
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const WrapperContainerWBckg = styled.div`
   position: relative;
@@ -22,6 +22,7 @@ export const WeBckg = styled.div`
 `;
 
 export const Title = styled.h3`
+  width: 100%;
   position: absolute;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -29,13 +30,13 @@ export const Title = styled.h3`
   font-size: 16px;
   margin-left: 18px;
   margin-top: 18px;
+  padding-right: 20px;
   line-height: 18px;
   width: 100%;
   opacity: 80%;
   z-index: 20;
 
   @media ${device.laptopL.mediaQuery} {
-    width: 50%;
     margin-left: 30px;
     line-height: 24px;
     margin-top: 24px;

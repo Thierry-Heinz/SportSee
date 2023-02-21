@@ -7,7 +7,6 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
  * 
  * Display the User performances in the form of a Radar chart
  * @component
- * @param {object} sizes
  * @param {array} data
  * @param {object} colors
  * @return (<Radarchart
@@ -49,7 +48,6 @@ const Radarchart = ({ colors, data }) => {
 export default Radarchart;
 
 Radarchart.propTypes = {
-  sizes: PropTypes.object,
   data: PropTypes.array.isRequired,
   colors: PropTypes.object,
 };

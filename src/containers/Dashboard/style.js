@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const StyledDashboardWrapper = styled.div`
   display: flex;
@@ -39,9 +39,11 @@ export const ChartsWrapper = styled.section`
 `;
 
 export const ChartsRow = styled.div`
+  position: relative;
   display: flex;
   gap: ${device.laptop.gap};
-  flex-wrap: auto;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
   grid-area: ${(props) => {
     return `
   ${props.area.rowStart} /

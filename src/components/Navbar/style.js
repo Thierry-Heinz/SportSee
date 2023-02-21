@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../utils/colors";
+import { device } from "../../utils/devices";
 
 export const Header = styled.header`
   flex: 0 0 100%;
@@ -29,9 +30,12 @@ export const Header = styled.header`
       text-decoration: none;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
-      font-size: 24px;
+      font-size: 18px;
       background-color: transparent;
       border: none;
+      @media ${device.laptopL.mediaQuery} {
+        font-size: 24px;
+      }
     }
   }
 `;

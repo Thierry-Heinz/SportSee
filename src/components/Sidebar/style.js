@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../utils/colors";
 
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const Aside = styled.aside`
   flex: 0 0 ${(props) => props.sideBarWidth}px;

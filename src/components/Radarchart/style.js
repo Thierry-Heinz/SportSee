@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ResponsiveContainer } from "recharts";
-import { device } from "../../utils/Devices";
+import { device } from "../../utils/devices";
 
 export const WrapperContainerWBckg = styled.div`
   position: relative;

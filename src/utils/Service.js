@@ -1,5 +1,8 @@
 import Modelisation from "./Modelisation";
 
+/** mock data for local dev */
+import data from "../assets/data.json";
+
 /**
  *
  * Api: a class that fetch the data and adapt it (by using the Modelisation Class) fro later use
@@ -14,6 +17,7 @@ export default class Api {
   constructor(userId) {
     this._userId = userId;
     this._baseURL = process.env.REACT_APP_BASE_URL;
+    this.envDev = process.env.REACT_APP_ENV;
     this.Modelisation = new Modelisation();
     this.userData = this.getUserData();
     this.firstName = this.getFirstName();
@@ -31,31 +35,36 @@ export default class Api {
    * @returns {promise} a Promise containing that will contain the data object
    *
    */
-  async _fetchJSON(endpoint) {
-    const env = "local";
-    let baseUrlRequest =
-      env === "local" ? `${this._baseURL}/${this._userId}` : "";
+  _fetchJSON(endpoint) {
+    let baseUrlRequest = `${this._baseURL}/${this._userId}`;
     let urlRequest = endpoint
       ? `${baseUrlRequest}/${endpoint}`
       : `${baseUrlRequest}`;
 
-    let json;
+    let apiResponse;
 
-    try {
-      const response = await fetch(urlRequest);
-      json = await response.json();
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        // Unexpected token < in JSON
-        console.log("There was a SyntaxError", error);
-      } else {
-        console.log("There was an error", error);
-      }
+    if (this.envDev === "local") {
+      apiResponse = data.find((user) => {
+        return user.id == this._userId;
+      });
+      return apiResponse;
     }
 
-    if (json) {
-      return json;
-    }
+    apiResponse = fetch(urlRequest)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        // Do something with the response
+        return responseJson;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return apiResponse;
   }
 
   /**
@@ -108,6 +117,9 @@ export default class Api {
    */
   async getUserAverageSessions() {
     const response = await this._fetchJSON("average-sessions");
+    if (this.envDev === "local") {
+      return this.Modelisation.adaptUserAverageSessions(response.data.average);
+    }
     return this.Modelisation.adaptUserAverageSessions(response.data.sessions);
   }
 
@@ -117,6 +129,9 @@ export default class Api {
    */
   async getUserActivity() {
     const response = await this._fetchJSON("activity");
+    if (this.envDev === "local") {
+      return this.Modelisation.adaptUserActivity(response.data.activity);
+    }
     return this.Modelisation.adaptUserActivity(response.data.sessions);
   }
 
@@ -126,6 +141,9 @@ export default class Api {
    */
   async getUserPerformance() {
     const response = await this._fetchJSON("performance");
+    if (this.envDev == "local") {
+      return this.Modelisation.adaptUserPerformance(response.data.performance);
+    }
     return this.Modelisation.adaptUserPerformance(response.data.data);
   }
 }
